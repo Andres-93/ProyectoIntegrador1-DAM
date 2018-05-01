@@ -81,7 +81,7 @@ public class VistaPrincipal extends JFrame{
 		mnMenuAlumnos.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		menuBar.add(mnMenuAlumnos);
 		
-		mntConsultaAl = new JMenuItem("Consulta");
+		mntConsultaAl = new JMenuItem("Modificar");
 		mntConsultaAl.setBorder(null);
 		mntConsultaAl.setForeground(Color.WHITE);
 		mntConsultaAl.setFont(new Font("Segoe UI", Font.BOLD, 15));

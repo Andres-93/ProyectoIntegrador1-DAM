@@ -2,13 +2,17 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
+import modelo.Alumno;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
@@ -17,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.Cursor;
 
 public class EliminarAlumno extends JPanel {
-	private JButton btnNewButton;
+	private JButton btnEliminarAl;
 	private JButton btnCancelar;
 	private JList list;
 	public EliminarAlumno() {
@@ -53,16 +57,16 @@ public class EliminarAlumno extends JPanel {
 		list = new JList();
 		scrollPane.setViewportView(list);
 		
-		btnNewButton = new JButton("");
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setRolloverIcon(new ImageIcon(EliminarAlumno.class.getResource("/images/botonEliminarPulsado.png")));
-		btnNewButton.setIcon(new ImageIcon(EliminarAlumno.class.getResource("/images/BotonoEliminar.png")));
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorder(null);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBounds(130, 550, 193, 49);
-		add(btnNewButton);
+		btnEliminarAl = new JButton("");
+		btnEliminarAl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnEliminarAl.setRolloverIcon(new ImageIcon(EliminarAlumno.class.getResource("/images/botonEliminarPulsado.png")));
+		btnEliminarAl.setIcon(new ImageIcon(EliminarAlumno.class.getResource("/images/BotonoEliminar.png")));
+		btnEliminarAl.setFocusPainted(false);
+		btnEliminarAl.setContentAreaFilled(false);
+		btnEliminarAl.setBorder(null);
+		btnEliminarAl.setBorderPainted(false);
+		btnEliminarAl.setBounds(130, 550, 193, 49);
+		add(btnEliminarAl);
 		
 		JLabel lblEliminarAlumno = new JLabel("ELIMINAR ALUMNO");
 		lblEliminarAlumno.setHorizontalAlignment(SwingConstants.CENTER);
@@ -91,10 +95,38 @@ public class EliminarAlumno extends JPanel {
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
 		btnCancelar.addActionListener(c);
+		btnEliminarAl.addActionListener(c);
+	}
+	
+
+	public JButton getBtnEliminarAl() {
+		return btnEliminarAl;
 	}
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
+	}
+	
+	public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
+		
+		DefaultListModel<Alumno> model = new DefaultListModel<Alumno>();
+		
+		for(int i = 0 ; i <alumnos.size(); i++) {
+			
+			model.addElement(alumnos.get(i));
+		}
+		 list.setModel(model);
+	}
+	
+	
+	//DEMOMENTO SOLO PERMITO ELIMINAR UN ALUMNO SELECCIONANDOLO.
+	public Alumno alumnosAEliminar() {
+		
+		Alumno al;
+		
+		al = (Alumno) list.getSelectedValue();
+
+		return al;
 	}
 	
 }

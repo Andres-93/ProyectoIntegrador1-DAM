@@ -2,6 +2,7 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
+import modelo.Alumno;
 
 import javax.swing.JButton;
 import java.awt.Cursor;
@@ -21,6 +23,7 @@ public class añadirAlumnos extends JPanel {
 	private JTextField textExpAl;
 	private JTextField textApellidoAl;
 	private JButton btnCancelar;
+	private JButton btnAnadir;
 	public añadirAlumnos() {
 		inicializar();
 		
@@ -43,12 +46,12 @@ public class añadirAlumnos extends JPanel {
 		
 		textApellidoAl = new JTextField();
 		textApellidoAl.setColumns(10);
-		textApellidoAl.setBounds(348, 427, 245, 36);
+		textApellidoAl.setBounds(348, 326, 245, 36);
 		add(textApellidoAl);
 		
 		textExpAl = new JTextField();
 		textExpAl.setColumns(10);
-		textExpAl.setBounds(348, 326, 245, 36);
+		textExpAl.setBounds(348, 427, 245, 36);
 		add(textExpAl);
 		
 		btnCancelar = new JButton("");
@@ -62,16 +65,16 @@ public class añadirAlumnos extends JPanel {
 		btnCancelar.setBounds(435, 505, 188, 55);
 		add(btnCancelar);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setRolloverIcon(new ImageIcon(añadirAlumnos.class.getResource("/images/PulsadoBotonA\u00F1adir.png")));
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setIcon(new ImageIcon(añadirAlumnos.class.getResource("/images/BotonA\u00F1adir.png")));
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBorder(null);
-		btnNewButton.setBounds(135, 505, 188, 55);
-		add(btnNewButton);
+		btnAnadir = new JButton("");
+		btnAnadir.setRolloverIcon(new ImageIcon(añadirAlumnos.class.getResource("/images/PulsadoBotonA\u00F1adir.png")));
+		btnAnadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAnadir.setIcon(new ImageIcon(añadirAlumnos.class.getResource("/images/BotonA\u00F1adir.png")));
+		btnAnadir.setFocusPainted(false);
+		btnAnadir.setContentAreaFilled(false);
+		btnAnadir.setBorderPainted(false);
+		btnAnadir.setBorder(null);
+		btnAnadir.setBounds(135, 505, 188, 55);
+		add(btnAnadir);
 		
 		JLabel lblNewLabel_3 = new JLabel("A\u00D1ADIR ALUMNO");
 		lblNewLabel_3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
@@ -115,11 +118,26 @@ public class añadirAlumnos extends JPanel {
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
 		btnCancelar.addActionListener(c);										//aqui iran los botones de añadir y cancelar.
+		btnAnadir.addActionListener(c);
+	}
+	
+	public Alumno getDatos() {
+		
+		Alumno alumno = null;
+		try {
+			alumno = new Alumno(textNombreAl.getText(), Integer.parseInt(textExpAl.getText()));
+		}catch(NumberFormatException e) {
+			JOptionPane.showConfirmDialog(null, "Error, el expediente deben ser unicamente numeros", "Error al introducir datos", JOptionPane.CANCEL_OPTION);
+		}
+		
+		return alumno;
 	}
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
 	}
-	
-	
+
+	public JButton getBtnAnadir() {
+		return btnAnadir;
+	}	
 }

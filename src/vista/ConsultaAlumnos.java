@@ -6,15 +6,19 @@ import javax.swing.ImageIcon;
 import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
+import modelo.Alumno;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Cursor;
@@ -22,7 +26,9 @@ import java.awt.Cursor;
 public class ConsultaAlumnos extends JPanel {
 	private JTextField textFiltro;
 	private JComboBox comboBox;
-	private JButton button;
+	private JButton btnCancelar;
+	private JList list;
+	private JButton btnModificar;
 	public ConsultaAlumnos() {
 		inicializar();
 	}
@@ -36,7 +42,7 @@ public class ConsultaAlumnos extends JPanel {
 		
 		setLayout(null);
 		
-		JLabel lblConsultarAlumnos = new JLabel("CONSULTAR ALUMNOS");
+		JLabel lblConsultarAlumnos = new JLabel("MODIFICAR ALUMNOS");
 		lblConsultarAlumnos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultarAlumnos.setForeground(Color.WHITE);
 		lblConsultarAlumnos.setFont(new Font("Sitka Small", Font.BOLD, 50));
@@ -54,7 +60,7 @@ public class ConsultaAlumnos extends JPanel {
 		scrollPane.setBounds(89, 333, 540, 217);
 		add(scrollPane);
 		
-		JList list = new JList();
+		list = new JList();
 		scrollPane.setViewportView(list);
 		
 		JLabel lblFiltrar = new JLabel("FILTRAR:");
@@ -73,16 +79,27 @@ public class ConsultaAlumnos extends JPanel {
 		add(textFiltro);
 		textFiltro.setColumns(10);
 		
-		button = new JButton("");
-		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button.setRolloverIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/PulsadoBotonCancelar.png")));
-		button.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/BotonCancelar.png")));
-		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
-		button.setBounds(249, 561, 188, 55);
-		add(button);
+		btnCancelar = new JButton("");
+		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCancelar.setRolloverIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/PulsadoBotonCancelar.png")));
+		btnCancelar.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/BotonCancelar.png")));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(false);
+		btnCancelar.setBorderPainted(false);
+		btnCancelar.setBorder(null);
+		btnCancelar.setBounds(426, 561, 188, 55);
+		add(btnCancelar);
+		
+		btnModificar = new JButton("");
+		btnModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificar.setRolloverIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/botonModificarPulsado.png")));
+		btnModificar.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/botonModificar.png")));
+		btnModificar.setFocusPainted(false);
+		btnModificar.setContentAreaFilled(false);
+		btnModificar.setBorderPainted(false);
+		btnModificar.setBorder(null);
+		btnModificar.setBounds(116, 561, 188, 55);
+		add(btnModificar);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/FondoAlumnos700X700.png")));
@@ -91,10 +108,35 @@ public class ConsultaAlumnos extends JPanel {
 	}
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
-		button.addActionListener(c);
+		btnCancelar.addActionListener(c);
+		btnModificar.addActionListener(c);
 	}
 	public JButton getButton() {
-		return button;
+		return btnCancelar;
 	}
+		
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+	public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
+		
+		DefaultListModel<Alumno> model = new DefaultListModel<Alumno>();
+		
+		for(int i = 0 ; i <alumnos.size(); i++) {
+			
+			model.addElement(alumnos.get(i));
+		}
+		 list.setModel(model);
+	}
+	
+	public Alumno obtenerSeleccionado() {
+		
+		Alumno al;
+		
+		al = (Alumno) list.getSelectedValue();
+		
+		return al;
+	}
+	
 	
 }
