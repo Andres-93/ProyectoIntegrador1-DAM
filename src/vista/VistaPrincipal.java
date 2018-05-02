@@ -30,7 +30,7 @@ import javax.swing.JSeparator;
 public class VistaPrincipal extends JFrame{
 	private JScrollPane scrollPane;
 	private JMenu mnMenuAlumnos;
-	private JMenuItem mntConsultaAl;
+	private JMenuItem mntModificarAl;
 	private JMenuBar menuBar;
 	private JMenuItem mntmAadirAl;
 	private JMenuItem mntmEliminar;
@@ -47,6 +47,7 @@ public class VistaPrincipal extends JFrame{
 	private JSeparator separator_2;
 	private JMenu mnMenuRegistrar;
 	private JMenuItem mntRegistrarProfesor;
+	private JMenuItem mntConsultar;
 	
 	public VistaPrincipal() {
 		inicializar();
@@ -81,12 +82,19 @@ public class VistaPrincipal extends JFrame{
 		mnMenuAlumnos.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		menuBar.add(mnMenuAlumnos);
 		
-		mntConsultaAl = new JMenuItem("Modificar");
-		mntConsultaAl.setBorder(null);
-		mntConsultaAl.setForeground(Color.WHITE);
-		mntConsultaAl.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		mntConsultaAl.setBackground(new Color(0, 153, 255));
-		mnMenuAlumnos.add(mntConsultaAl);
+		mntConsultar = new JMenuItem("Consultar");
+		mntConsultar.setBackground(new Color(0, 153, 255));
+		mntConsultar.setForeground(Color.WHITE);
+		mntConsultar.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		mntConsultar.setBorder(null);
+		mnMenuAlumnos.add(mntConsultar);
+		
+		mntModificarAl = new JMenuItem("Modificar");
+		mntModificarAl.setBorder(null);
+		mntModificarAl.setForeground(Color.WHITE);
+		mntModificarAl.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		mntModificarAl.setBackground(new Color(0, 153, 255));
+		mnMenuAlumnos.add(mntModificarAl);
 		
 		mntmAadirAl = new JMenuItem("A\u00F1adir");
 		mntmAadirAl.setBorderPainted(true);
@@ -184,6 +192,7 @@ public class VistaPrincipal extends JFrame{
 			mntAadirCi.setEnabled(true);
 			mntEliminarCi.setEnabled(true);
 			mntRegistrarProfesor.setEnabled(true);
+			mntModificarAl.setEnabled(true);
 		}
 		else {
 			mntmAadirAl.setEnabled(false);
@@ -193,12 +202,13 @@ public class VistaPrincipal extends JFrame{
 			mntAadirCi.setEnabled(false);
 			mntEliminarCi.setEnabled(false);
 			mntRegistrarProfesor.setEnabled(false);
+			mntModificarAl.setEnabled(false);
 		}
 		
 	}
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
-		mntConsultaAl.addActionListener(c);
+		mntModificarAl.addActionListener(c);
 		mntmAadirAl.addActionListener(c);
 		mntmEliminar.addActionListener(c);
 		mntConsultaPro.addActionListener(c);
@@ -208,6 +218,7 @@ public class VistaPrincipal extends JFrame{
 		mntAadirCi.addActionListener(c);
 		mntEliminarCi.addActionListener(c);
 		mntRegistrarProfesor.addActionListener(c);
+		mntConsultar.addActionListener(c);
 	}
 	
 	
@@ -241,7 +252,7 @@ public class VistaPrincipal extends JFrame{
 	}
 
 	public JMenuItem getMntConsultaAl() {
-		return mntConsultaAl;
+		return mntModificarAl;
 	}
 
 	public JMenuItem getMntmAadirAl() {
@@ -262,6 +273,11 @@ public class VistaPrincipal extends JFrame{
 	}
 	
 	
+	
+	public JMenuItem getMntConsultar() {
+		return mntConsultar;
+	}
+
 	public void hacerVisible() {
 		this.setVisible(true);
 		setLocationRelativeTo(null);

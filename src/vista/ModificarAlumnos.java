@@ -23,13 +23,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Cursor;
 
-public class ConsultaAlumnos extends JPanel {
+public class ModificarAlumnos extends JPanel {
 	private JTextField textFiltro;
 	private JComboBox comboBox;
 	private JButton btnCancelar;
 	private JList list;
 	private JButton btnModificar;
-	public ConsultaAlumnos() {
+	public ModificarAlumnos() {
 		inicializar();
 	}
 	private void inicializar() {
@@ -81,8 +81,8 @@ public class ConsultaAlumnos extends JPanel {
 		
 		btnCancelar = new JButton("");
 		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnCancelar.setRolloverIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/PulsadoBotonCancelar.png")));
-		btnCancelar.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/BotonCancelar.png")));
+		btnCancelar.setRolloverIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/PulsadoBotonCancelar.png")));
+		btnCancelar.setIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/BotonCancelar.png")));
 		btnCancelar.setFocusPainted(false);
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBorderPainted(false);
@@ -92,8 +92,8 @@ public class ConsultaAlumnos extends JPanel {
 		
 		btnModificar = new JButton("");
 		btnModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnModificar.setRolloverIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/botonModificarPulsado.png")));
-		btnModificar.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/botonModificar.png")));
+		btnModificar.setRolloverIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/botonModificarPulsado.png")));
+		btnModificar.setIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/botonModificar.png")));
 		btnModificar.setFocusPainted(false);
 		btnModificar.setContentAreaFilled(false);
 		btnModificar.setBorderPainted(false);
@@ -102,7 +102,7 @@ public class ConsultaAlumnos extends JPanel {
 		add(btnModificar);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ConsultaAlumnos.class.getResource("/images/FondoAlumnos700X700.png")));
+		lblNewLabel.setIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/FondoAlumnos700X700.png")));
 		lblNewLabel.setBounds(0, 0, 700, 625);
 		add(lblNewLabel);
 	}

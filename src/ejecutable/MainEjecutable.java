@@ -4,7 +4,8 @@ import java.awt.EventQueue;
 
 import controlador.ControladorApp;
 import vista.AñadirCiclo;
-import vista.ConsultaAlumnos;
+import vista.ConsultaAlumnoNuevo;
+import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
 import vista.ModificarAlumno;
@@ -28,13 +29,14 @@ public class MainEjecutable {
 				PanelLogin panel2 = new PanelLogin();
 				añadirAlumnos panel3 = new añadirAlumnos();
 				EliminarAlumno panel4 = new EliminarAlumno();
-				ConsultaAlumnos panel5 = new ConsultaAlumnos();
+				ModificarAlumnos panel5 = new ModificarAlumnos();
 				RegistrarProfesor panel6 = new RegistrarProfesor();
 				AñadirCiclo panel7 = new AñadirCiclo();
 				ModificarAlumno panel8 = new ModificarAlumno();
 				EliminarCiclo panel9 = new EliminarCiclo();
 				ModificarCliclo panel10 = new ModificarCliclo();
 				ModificarCicloJD panel11 = new ModificarCicloJD();
+				ConsultaAlumnoNuevo panel12 = new ConsultaAlumnoNuevo();
 				ControladorApp control = new ControladorApp(prueba);
 				
 				//con.conectar();							//Abrimos la comunicacion con la base de datos
@@ -51,6 +53,7 @@ public class MainEjecutable {
 				control.setPanel9(panel9);
 				control.setPanel10(panel10);
 				control.setPanel11(panel11);
+				control.setPanel12(panel12);
 				
 				panel2.setControlador(control);		//Todos los panelesd se le presentan al controlador
 				panel1.setControlador(control);
@@ -64,6 +67,7 @@ public class MainEjecutable {
 				panel9.setControlador(control);
 				panel10.setControlador(control);
 				panel11.setControlador(control);
+				panel12.setControlador(control);
 				
 				prueba.hacerVisible();
 				prueba.setPanel(panel2);

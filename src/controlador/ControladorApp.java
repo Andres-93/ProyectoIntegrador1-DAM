@@ -10,7 +10,8 @@ import persistencias.AlumnoPersistencia;
 import persistencias.CicloPersistencia;
 import persistencias.ProfesorPersistencia;
 import vista.AñadirCiclo;
-import vista.ConsultaAlumnos;
+import vista.ConsultaAlumnoNuevo;
+import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
 import vista.ModificarAlumno;
@@ -31,13 +32,14 @@ public class ControladorApp implements ActionListener{
 	private PanelLogin panel2;
 	private añadirAlumnos panel3;
 	private EliminarAlumno panel4;
-	private ConsultaAlumnos panel5;
+	private ModificarAlumnos panel5;
 	private RegistrarProfesor panel6;
 	private AñadirCiclo panel7;
 	private ModificarAlumno panel8;
 	private EliminarCiclo panel9;
 	private ModificarCliclo panel10;
 	private ModificarCicloJD panel11;
+	private ConsultaAlumnoNuevo panel12;
 					
 	
 
@@ -62,7 +64,7 @@ public class ControladorApp implements ActionListener{
 		this.panel4 = panel4;
 	}
 	
-	public void setPanel5(ConsultaAlumnos panel5) {
+	public void setPanel5(ModificarAlumnos panel5) {
 		this.panel5 = panel5;
 	}
 	
@@ -88,6 +90,10 @@ public class ControladorApp implements ActionListener{
 	
 	public void setPanel11(ModificarCicloJD panel11) {
 		this.panel11 = panel11;
+	}
+	
+	public void setPanel12(ConsultaAlumnoNuevo panel12) {
+		this.panel12 = panel12;
 	}
 
 
@@ -119,7 +125,7 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntmAadirAl())) {
 			vistaP.setPanel(panel3);
 			
-		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar())) {
+		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar())) {
 			vistaP.setPanel(panel1);	
 			
 		}else if(e.getSource().equals(vistaP.getMntmEliminar())) {
@@ -204,6 +210,10 @@ public class ControladorApp implements ActionListener{
 			new CicloPersistencia().modificarAlumno(panel11.getDatos(), new CicloPersistencia().obtenerID(panel10.cicloSelecionado()));
 			panel11.setVisible(false);
 			panel10.mostrarCiclos(new CicloPersistencia().cargarCiclos());
+			
+		}else if(e.getSource().equals(vistaP.getMntConsultar())) {
+			vistaP.setPanel(panel12);
+			panel12.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
 		}
 	}
 }
