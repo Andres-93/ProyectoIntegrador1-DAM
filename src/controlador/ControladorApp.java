@@ -10,6 +10,7 @@ import persistencias.AlumnoPersistencia;
 import persistencias.CicloPersistencia;
 import persistencias.ProfesorPersistencia;
 import vista.AñadirCiclo;
+import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
@@ -40,6 +41,7 @@ public class ControladorApp implements ActionListener{
 	private ModificarCliclo panel10;
 	private ModificarCicloJD panel11;
 	private ConsultaAlumnoNuevo panel12;
+	private AñadirProyecto panel13;
 					
 	
 
@@ -94,6 +96,10 @@ public class ControladorApp implements ActionListener{
 	
 	public void setPanel12(ConsultaAlumnoNuevo panel12) {
 		this.panel12 = panel12;
+	}
+	
+	public void setPanel13(AñadirProyecto panel13) {
+		this.panel13 = panel13;
 	}
 
 
@@ -214,6 +220,11 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntConsultar())) {
 			vistaP.setPanel(panel12);
 			panel12.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
+			
+		}else if(e.getSource().equals(vistaP.getMntAadirPro())) {
+			vistaP.setPanel(panel13);
+			panel13.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
+			panel13.mostrarCiclos(new CicloPersistencia().cargarCiclos());
 		}
 	}
 }

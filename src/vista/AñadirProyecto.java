@@ -1,4 +1,4 @@
-package vistasPruebas;
+package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -6,14 +6,23 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.border.LineBorder;
+
+import controlador.ControladorApp;
+import modelo.Alumno;
+import modelo.Ciclo;
+
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JButton;
 
 public class AñadirProyecto extends JPanel {
 	private JTextField textNombre;
@@ -24,6 +33,9 @@ public class AñadirProyecto extends JPanel {
 	private JComboBox comboBoxCiclo;
 	private JList listAlumnos;
 	public AñadirProyecto() {
+		inicializar();
+	}
+	private void inicializar() {
 		setLayout(null);
 		setBounds(0,0,700,625);
 		
@@ -137,4 +149,28 @@ public class AñadirProyecto extends JPanel {
 		label.setBounds(0, 0, 700, 625);
 		add(label);
 	}
+	
+	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
+		
+	}
+	
+	
+	public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
+		
+		DefaultListModel<Alumno> model = new DefaultListModel<Alumno>();
+		
+		for(int i = 0 ; i <alumnos.size(); i++) {
+			
+			model.addElement(alumnos.get(i));
+		}
+		 listAlumnos.setModel(model);
+	}
+	
+	public void mostrarCiclos(ArrayList<Ciclo> ciclos) {
+				
+		for(int i = 0; i < ciclos.size();i++) {
+			comboBoxCiclo.addItem(ciclos.get(i));
+		}
+					
+	}	
 }
