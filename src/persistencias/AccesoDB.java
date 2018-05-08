@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.sqlite.SQLiteConfig;
+
 public class AccesoDB {
 
 	private String url;
@@ -19,8 +21,11 @@ public class AccesoDB {
 	
 	public Connection conectar() throws ClassNotFoundException, SQLException {
 
+		//Activamos las foreign keys de nuestra base de datos.
+		SQLiteConfig config = new SQLiteConfig(); 
+		config.enforceForeignKeys(true); 
 		Class.forName(driver);
-		Connection con = DriverManager.getConnection(url);			
+		Connection con = DriverManager.getConnection(url,config.toProperties());			
 		return con;		
 	}
 	

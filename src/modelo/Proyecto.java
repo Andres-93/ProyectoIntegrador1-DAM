@@ -11,11 +11,11 @@ public class Proyecto {
 	private int año;
 	private int curso;
 	private String grupo;
-	private int ciclo;
+	private Ciclo ciclo;
 	
 	
 	public Proyecto(String nombre, ArrayList<Alumno> integrantes, String url, double nota, int año, int curso,
-			String grupo, int ciclo) {
+			String grupo, Ciclo ciclo) {
 		this.nombre = nombre;
 		this.integrantes = integrantes;
 		this.url = url;
@@ -25,6 +25,20 @@ public class Proyecto {
 		this.grupo = grupo;
 		this.ciclo = ciclo;
 	}
+	
+	
+
+
+	public Proyecto(String nombre, String url, double nota, int año, int curso, String grupo) {
+		this.nombre = nombre;
+		this.url = url;
+		this.nota = nota;
+		this.año = año;
+		this.curso = curso;
+		this.grupo = grupo;
+	}
+
+
 
 
 	public String getNombre() {
@@ -62,8 +76,16 @@ public class Proyecto {
 	}
 
 
-	public int getCiclo() {
+	public Ciclo getCiclo() {
 		return ciclo;
+	}
+
+
+
+
+	public String toString() {
+		return "Nombre: " + nombre + " URL: " + url + " Nota: " + nota + " Año: " + año + " Curso: " + curso
+				+ " Grupo: " + grupo;
 	}
 	
 	

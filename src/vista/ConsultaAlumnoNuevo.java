@@ -48,6 +48,7 @@ public class ConsultaAlumnoNuevo extends JPanel {
 		add(scrollPane);
 		
 		listaAl = new JList();
+		listaAl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		scrollPane.setViewportView(listaAl);
 		
 		btnCancelar = new JButton("");

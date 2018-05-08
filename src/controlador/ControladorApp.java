@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import ejecutable.Conexion;
 import persistencias.AlumnoPersistencia;
 import persistencias.CicloPersistencia;
+import persistencias.PoryectoPersistencia;
 import persistencias.ProfesorPersistencia;
 import vista.AñadirCiclo;
 import vista.AñadirProyecto;
@@ -15,9 +16,12 @@ import vista.ConsultaAlumnoNuevo;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
+import vista.EliminarProyecto;
 import vista.ModificarAlumno;
 import vista.ModificarCicloJD;
 import vista.ModificarCliclo;
+import vista.ModificarProyecto;
+import vista.ModificarProyectoJD;
 import vista.PanelLogin;
 import vista.PanelPrincipal;
 import vista.RegistrarProfesor;
@@ -42,6 +46,9 @@ public class ControladorApp implements ActionListener{
 	private ModificarCicloJD panel11;
 	private ConsultaAlumnoNuevo panel12;
 	private AñadirProyecto panel13;
+	private EliminarProyecto panel14;
+	private ModificarProyecto panel15;
+	private ModificarProyectoJD panel16;
 					
 	
 
@@ -101,6 +108,18 @@ public class ControladorApp implements ActionListener{
 	public void setPanel13(AñadirProyecto panel13) {
 		this.panel13 = panel13;
 	}
+	
+	public void setPanel14(EliminarProyecto panel14) {
+		this.panel14 = panel14;
+	}
+	
+	public void setPanel15(ModificarProyecto panel15) {
+		this.panel15 = panel15;
+	}
+	
+	public void setPanel16(ModificarProyectoJD panel16) {
+		this.panel16 = panel16;
+	}
 
 
 	@Override
@@ -131,7 +150,7 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntmAadirAl())) {
 			vistaP.setPanel(panel3);
 			
-		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar())) {
+		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar()) || e.getSource().equals(panel14.getBtnCancelar()) || e.getSource().equals(panel15.getBtnCancelar())) {
 			vistaP.setPanel(panel1);	
 			
 		}else if(e.getSource().equals(vistaP.getMntmEliminar())) {
@@ -225,6 +244,36 @@ public class ControladorApp implements ActionListener{
 			vistaP.setPanel(panel13);
 			panel13.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
 			panel13.mostrarCiclos(new CicloPersistencia().cargarCiclos());
+			
+			
+		}else if(e.getSource().equals(panel13.getBtnAnadir())) {
+			new PoryectoPersistencia().añadirProyecto(panel13.getDatos());
+			
+		}else if( e.getSource().equals(vistaP.getMntEliminarPro())) {
+			vistaP.setPanel(panel14);
+			panel14.mostrarProyectos(new PoryectoPersistencia().cargarProyectos());
+			
+		}else if(e.getSource().equals(panel14.getBtnEliminarPro())) {
+			new PoryectoPersistencia().eliminarProyecto(panel14.ProyectoAEliminar());
+			
+		}else if(e.getSource().equals(vistaP.getMntConsultaPro())) {
+			vistaP.setPanel(panel15);
+			panel15.mostrarProyectos(new PoryectoPersistencia().cargarProyectos());
+			
+		}else if(e.getSource().equals(panel15.getBtnModificarPro())) {
+			panel16.mostrarDatos(panel15.obtenerSelecionado());
+			panel16.setVisible(true);
+			
+		}else if(e.getSource().equals(panel16.getBtnCancelar())) {
+			panel16.dispose();
+			
+		}else if(e.getSource().equals(panel16.getBtnAnadirAl())) {
+			new PoryectoPersistencia().vincularAlumno(panel16.añadirAlumno(),new PoryectoPersistencia().obtenerID(panel15.obtenerSelecionado()));			//Pruebas
+			panel16.mostrarDatos(panel15.obtenerSelecionado());
+			
+		}else if(e.getSource().equals(panel16.getBtnElimAl())) {
+			new PoryectoPersistencia().desvincularAlumno(panel16.eliminarAlumno(), new PoryectoPersistencia().obtenerID(panel15.obtenerSelecionado()));
+			panel16.mostrarDatos(panel15.obtenerSelecionado());
 		}
 	}
 }

@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
 import controlador.ControladorApp;
 import modelo.Alumno;
 import modelo.Ciclo;
+import modelo.Proyecto;
 
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
@@ -29,9 +30,11 @@ public class AñadirProyecto extends JPanel {
 	private JTextField textUrl;
 	private JSpinner spinnerNota;
 	private JSpinner spinnerAno;
-	private JComboBox comboBoxGrupo;
+	private JComboBox<String> comboBoxGrupo;
 	private JComboBox comboBoxCiclo;
-	private JList listAlumnos;
+	private JList<Alumno> listAlumnos;
+	private JButton btnAnadir;
+	private JSpinner spinnerCurso;
 	public AñadirProyecto() {
 		inicializar();
 	}
@@ -102,11 +105,6 @@ public class AñadirProyecto extends JPanel {
 		lblCruso.setBounds(10, 262, 104, 29);
 		add(lblCruso);
 		
-		JComboBox comboCurso = new JComboBox();
-		comboCurso.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
-		comboCurso.setBounds(112, 260, 63, 36);
-		add(comboCurso);
-		
 		JLabel lblGrupo = new JLabel("GRUPO");
 		lblGrupo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGrupo.setForeground(Color.WHITE);
@@ -144,6 +142,15 @@ public class AñadirProyecto extends JPanel {
 		listAlumnos = new JList();
 		scrollPane.setViewportView(listAlumnos);
 		
+		btnAnadir = new JButton("New button");
+		btnAnadir.setBounds(333, 353, 177, 49);
+		add(btnAnadir);
+		
+		spinnerCurso = new JSpinner();
+		spinnerCurso.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spinnerCurso.setBounds(112, 255, 70, 36);
+		add(spinnerCurso);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(AñadirProyecto.class.getResource("/images/FondoAlumnos700X700.png")));
 		label.setBounds(0, 0, 700, 625);
@@ -151,7 +158,7 @@ public class AñadirProyecto extends JPanel {
 	}
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
-		
+		btnAnadir.addActionListener(c);
 	}
 	
 	
@@ -172,5 +179,38 @@ public class AñadirProyecto extends JPanel {
 			comboBoxCiclo.addItem(ciclos.get(i));
 		}
 					
-	}	
+	}
+	
+	public Proyecto getDatos() {
+		
+		Proyecto pro;
+		
+		ArrayList<Alumno> listaAl =  new ArrayList<Alumno>() ;
+		
+		
+		for(Alumno aux : listAlumnos.getSelectedValuesList()) {
+			listaAl.add(aux);	
+		}
+				
+		Ciclo ci = (Ciclo) comboBoxCiclo.getSelectedItem();
+		
+		String grupo = comboBoxGrupo.getSelectedItem().toString();
+		
+		pro = new Proyecto(textNombre.getText(), listaAl, textUrl.getText(), (int) spinnerNota.getValue(), (int) spinnerAno.getValue(),(int) spinnerCurso.getValue(), grupo, ci);
+		
+				
+		return pro;
+	}
+	
+	
+	public JButton getBtnAnadir() {
+		return btnAnadir;
+	}
+	
+	public void pruebas() {
+		System.out.println("spinerNota:  " + spinnerNota.getValue());
+		System.out.println("spinerAno:  " + spinnerAno.getValue());
+		System.out.println("ComboBoxGrupo:  " + comboBoxGrupo.getSelectedItem());
+
+	}
 }

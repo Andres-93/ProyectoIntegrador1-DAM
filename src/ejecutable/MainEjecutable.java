@@ -9,9 +9,12 @@ import vista.ConsultaAlumnoNuevo;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
+import vista.EliminarProyecto;
 import vista.ModificarAlumno;
 import vista.ModificarCicloJD;
 import vista.ModificarCliclo;
+import vista.ModificarProyecto;
+import vista.ModificarProyectoJD;
 import vista.PanelLogin;
 import vista.PanelPrincipal;
 import vista.RegistrarProfesor;
@@ -39,6 +42,9 @@ public class MainEjecutable {
 				ModificarCicloJD panel11 = new ModificarCicloJD();
 				ConsultaAlumnoNuevo panel12 = new ConsultaAlumnoNuevo();
 				AñadirProyecto panel13 = new AñadirProyecto();
+				EliminarProyecto panel14 = new EliminarProyecto();
+				ModificarProyecto panel15 = new ModificarProyecto();
+				ModificarProyectoJD panel16 = new ModificarProyectoJD();
 				ControladorApp control = new ControladorApp(prueba);
 				
 				//con.conectar();							//Abrimos la comunicacion con la base de datos
@@ -57,6 +63,9 @@ public class MainEjecutable {
 				control.setPanel11(panel11);
 				control.setPanel12(panel12);
 				control.setPanel13(panel13);
+				control.setPanel14(panel14);
+				control.setPanel15(panel15);
+				control.setPanel16(panel16);
 				
 				panel2.setControlador(control);		//Todos los panelesd se le presentan al controlador
 				panel1.setControlador(control);
@@ -72,6 +81,9 @@ public class MainEjecutable {
 				panel11.setControlador(control);
 				panel12.setControlador(control);
 				panel13.setControlador(control);
+				panel14.setControlador(control);
+				panel15.setControlador(control);
+				panel16.setControlador(control);
 				
 				prueba.hacerVisible();
 				prueba.setPanel(panel2);
