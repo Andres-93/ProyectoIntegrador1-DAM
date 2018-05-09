@@ -41,13 +41,14 @@ public class VistaPrincipal extends JFrame{
 	private JMenuItem mntConsultaPro;
 	private JMenuItem mntAadirPro;
 	private JMenuItem mntEliminarPro;
-	private JMenuItem mntConsultarCi;
+	private JMenuItem mtnModificarCi;
 	private JMenuItem mntAadirCi;
 	private JMenuItem mntEliminarCi;
 	private JSeparator separator_2;
 	private JMenu mnMenuRegistrar;
 	private JMenuItem mntRegistrarProfesor;
 	private JMenuItem mntConsultar;
+	private JMenuItem mntConsultaCiclo;
 	
 	public VistaPrincipal() {
 		inicializar();
@@ -148,11 +149,17 @@ public class VistaPrincipal extends JFrame{
 		mnCiclos.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		menuBar.add(mnCiclos);
 		
-		mntConsultarCi = new JMenuItem("Consultar");
-		mntConsultarCi.setBackground(new Color(0, 153, 255));
-		mntConsultarCi.setForeground(Color.WHITE);
-		mntConsultarCi.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		mnCiclos.add(mntConsultarCi);
+		mntConsultaCiclo = new JMenuItem("Consultar");
+		mntConsultaCiclo.setBackground(new Color(0, 153, 255));
+		mntConsultaCiclo.setForeground(Color.WHITE);
+		mntConsultaCiclo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnCiclos.add(mntConsultaCiclo);
+		
+		mtnModificarCi = new JMenuItem("Modificar");
+		mtnModificarCi.setBackground(new Color(0, 153, 255));
+		mtnModificarCi.setForeground(Color.WHITE);
+		mtnModificarCi.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnCiclos.add(mtnModificarCi);
 		
 		mntAadirCi = new JMenuItem("A\u00F1adir");
 		mntAadirCi.setBackground(new Color(0, 153, 255));
@@ -193,6 +200,7 @@ public class VistaPrincipal extends JFrame{
 			mntEliminarCi.setEnabled(true);
 			mntRegistrarProfesor.setEnabled(true);
 			mntModificarAl.setEnabled(true);
+			mtnModificarCi.setEnabled(true);
 		}
 		else {
 			mntmAadirAl.setEnabled(false);
@@ -203,6 +211,7 @@ public class VistaPrincipal extends JFrame{
 			mntEliminarCi.setEnabled(false);
 			mntRegistrarProfesor.setEnabled(false);
 			mntModificarAl.setEnabled(false);
+			mtnModificarCi.setEnabled(false);
 		}
 		
 	}
@@ -214,21 +223,26 @@ public class VistaPrincipal extends JFrame{
 		mntConsultaPro.addActionListener(c);
 		mntAadirPro.addActionListener(c);
 		mntEliminarPro.addActionListener(c);
-		mntConsultarCi.addActionListener(c);
+		mtnModificarCi.addActionListener(c);
 		mntAadirCi.addActionListener(c);
 		mntEliminarCi.addActionListener(c);
 		mntRegistrarProfesor.addActionListener(c);
 		mntConsultar.addActionListener(c);
+		mntConsultaCiclo.addActionListener(c);
 	}
 	
 	
 	
+	public JMenuItem getMntConsultaCiclo() {
+		return mntConsultaCiclo;
+	}
+
 	public JMenuItem getMntRegistrarProfesor() {
 		return mntRegistrarProfesor;
 	}
 
 	public JMenuItem getMntConsultarCi() {
-		return mntConsultarCi;
+		return mtnModificarCi;
 	}
 
 	public JMenuItem getMntAadirCi() {

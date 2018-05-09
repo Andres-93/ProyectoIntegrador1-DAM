@@ -28,7 +28,6 @@ public void añadirProyecto(Proyecto pro) {
 			
 			con = conexion.conectar();
 			System.out.println("Conectado");
-		
             st = con.prepareStatement("insert into proyectos (nombre,url,nota,año,curso,grupo,ciclo) values (?,?,?,?,?,?,?)");
             st.setString(1, pro.getNombre());
             st.setString(2, pro.getUrl());
@@ -36,7 +35,7 @@ public void añadirProyecto(Proyecto pro) {
             st.setInt(4, pro.getAño());
             st.setInt(5, pro.getCurso());
             st.setString(6, pro.getGrupo());
-            st.setInt(7, new CicloPersistencia().obtenerID(pro.getCiclo()));           
+            st.setInt(7, new CicloPersistencia().obtenerID(pro.getCiclo().getNombre()));           
             st.execute();
             
             
@@ -266,6 +265,49 @@ public void añadirProyecto(Proyecto pro) {
         }
 		
 		return alumnos;
+	}
+	
+	public void modificarProyecto(Proyecto pro, int idProyecto, int idCiclo) {
+		
+		PreparedStatement sm = null;
+				
+		try {
+			
+			con = conexion.conectar();
+			System.out.println("Conectado");
+					
+			sm = con.prepareStatement("update proyectos set nombre = ?,url = ?, nota = ?, año = ?, curso = ?, grupo = ? , ciclo = ?  where id_p = ?");
+            sm.setString(1, pro.getNombre());
+            sm.setString(2, pro.getUrl());
+            sm.setDouble(3, pro.getNota());
+            sm.setInt(4, pro.getAño());
+            sm.setInt(5, pro.getCurso());
+            sm.setString(6, pro.getGrupo());
+            sm.setInt(7, idCiclo);
+            sm.setInt(8, idProyecto);
+            sm.execute();
+            JOptionPane.showConfirmDialog(null, "Proyecto modificado correctamente", "Mensaje de confirmación", JOptionPane.CLOSED_OPTION);
+	        } catch (SQLException ex) {
+	           JOptionPane.showMessageDialog(null, "Error");
+	        }catch(ClassNotFoundException er) {
+	        	er.printStackTrace();
+	        }catch(Exception e) {
+	        	JOptionPane.showMessageDialog(null, "Error 2", "Error", JOptionPane.CANCEL_OPTION);
+	        }finally {
+	        	
+	        	try {
+	        		if(sm != null) {
+	        			sm.close();
+	        		}
+	        		if (con != null) {
+	        			conexion.desconectar(con);
+	        		}	    	
+	    		}catch(SQLException e) {
+	    			 System.out.println("No se pudo cerrar");
+	    		}		        	
+	        }		
+				
+					
 	}
 	
 	public void vincularAlumno(Alumno al, int idProyecto) {

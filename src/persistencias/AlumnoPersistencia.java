@@ -211,4 +211,51 @@ public class AlumnoPersistencia {
 	        }			
 		return id;
 	}
+	
+	public ArrayList<Alumno> cargarAlumnosFiltrado(String consulta) {
+		
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		Alumno al;
+		Statement st = null;
+        ResultSet rs = null;
+		
+		
+		try {
+			
+			con = conexion.conectar();
+			System.out.println("Conectado");
+			
+            st = con.createStatement();
+            rs = st.executeQuery(consulta);
+           
+           while(rs.next()) {      	   
+        	   al = new Alumno(rs.getString(2), rs.getInt(3));
+        	   alumnos.add(al);      	   
+           }
+           
+        } catch (SQLException ex) {
+        	System.out.println(ex.getMessage());
+           JOptionPane.showMessageDialog(null, "Error");
+        }catch(ClassNotFoundException er) {
+        	er.printStackTrace();
+        }
+		catch(Exception e) {
+        	JOptionPane.showMessageDialog(null, "Error 2", "Error", JOptionPane.CANCEL_OPTION);
+        }finally {	
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(st != null) {
+					st.close();
+				}
+				if(con != null) {
+					conexion.desconectar(con);
+				}			
+			}catch(SQLException e) {
+				 System.out.println("No se pudo cerrar");
+			}	
+        }
+		return alumnos;
+	}
 }

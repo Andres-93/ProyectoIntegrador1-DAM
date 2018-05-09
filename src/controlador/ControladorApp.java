@@ -13,6 +13,7 @@ import persistencias.ProfesorPersistencia;
 import vista.AñadirCiclo;
 import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
+import vista.ConsultaCiclos;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
@@ -49,6 +50,7 @@ public class ControladorApp implements ActionListener{
 	private EliminarProyecto panel14;
 	private ModificarProyecto panel15;
 	private ModificarProyectoJD panel16;
+	private ConsultaCiclos panel17;
 					
 	
 
@@ -121,6 +123,9 @@ public class ControladorApp implements ActionListener{
 		this.panel16 = panel16;
 	}
 
+	public void setPanel17(ConsultaCiclos panel17) {
+		this.panel17 = panel17;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {	
@@ -150,7 +155,7 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntmAadirAl())) {
 			vistaP.setPanel(panel3);
 			
-		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar()) || e.getSource().equals(panel14.getBtnCancelar()) || e.getSource().equals(panel15.getBtnCancelar())) {
+		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar()) || e.getSource().equals(panel14.getBtnCancelar()) || e.getSource().equals(panel15.getBtnCancelar()) || e.getSource().equals(panel17.getBtnCancelar())) {
 			vistaP.setPanel(panel1);	
 			
 		}else if(e.getSource().equals(vistaP.getMntmEliminar())) {
@@ -232,7 +237,7 @@ public class ControladorApp implements ActionListener{
 			panel11.setVisible(false);
 			
 		}else if(e.getSource().equals(panel11.getBtnModiCi())) {
-			new CicloPersistencia().modificarAlumno(panel11.getDatos(), new CicloPersistencia().obtenerID(panel10.cicloSelecionado()));
+			new CicloPersistencia().modificarAlumno(panel11.getDatos(), new CicloPersistencia().obtenerID(panel10.cicloSelecionado().getNombre()));
 			panel11.setVisible(false);
 			panel10.mostrarCiclos(new CicloPersistencia().cargarCiclos());
 			
@@ -274,6 +279,18 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(panel16.getBtnElimAl())) {
 			new PoryectoPersistencia().desvincularAlumno(panel16.eliminarAlumno(), new PoryectoPersistencia().obtenerID(panel15.obtenerSelecionado()));
 			panel16.mostrarDatos(panel15.obtenerSelecionado());
+			
+		}else if(e.getSource().equals(panel16.getBtnModificarProJD())) {
+			new PoryectoPersistencia().modificarProyecto(panel16.getDatos(), new PoryectoPersistencia().obtenerID(panel15.obtenerSelecionado()),new CicloPersistencia().obtenerID(panel16.obtenerNombreCiclo()));
+			panel16.dispose();
+			panel15.mostrarProyectos(new PoryectoPersistencia().cargarProyectos());
+			
+		}else if(e.getSource().equals(panel5.getBtnFiltrar())) {
+			panel5.filtrar();
+			
+		}else if(e.getSource().equals(vistaP.getMntConsultaCiclo())) {
+			vistaP.setPanel(panel17);
+			panel17.mostrarCiclos(new CicloPersistencia().cargarCiclos());
 		}
 	}
 }

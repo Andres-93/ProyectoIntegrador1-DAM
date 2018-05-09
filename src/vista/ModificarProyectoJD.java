@@ -117,7 +117,7 @@ public class ModificarProyectoJD extends JDialog {
 		getContentPane().add(textUrl);
 		
 		spinnerNota = new JSpinner();
-		spinnerNota.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+		spinnerNota.setModel(new SpinnerNumberModel(0.0, 0.0, 10.0, 1.0));
 		spinnerNota.setBounds(350, 180, 63, 36);
 		getContentPane().add(spinnerNota);
 		
@@ -253,7 +253,11 @@ public class ModificarProyectoJD extends JDialog {
 		
 		mostrarCiclos(new CicloPersistencia().cargarCiclos(),	new CicloPersistencia().obtenerCiclo(pro.getNombre()));
 	}
-	
+	public String obtenerNombreCiclo() {
+		Ciclo ci = (Ciclo) comboBoxCiclo.getSelectedItem();
+		String nombre = ci.getNombre();
+		return nombre;
+	}
 	
 	public Alumno añadirAlumno() {
 		
@@ -279,12 +283,16 @@ public class ModificarProyectoJD extends JDialog {
 		for(int j= 0; j <ciclos.size() && continuar; j++) {		
 			if(ciclos.get(j).getNombre().equals(nombre)) {
 				comboBoxCiclo.setSelectedIndex(j);
-				continuar = false;
-			
-			}
-			
-		}
-					
+				continuar = false;			
+			}			
+		}					
+	}
+	
+	public Proyecto getDatos() {
+				
+		Proyecto pro = new Proyecto(textNombre.getText(), textUrl.getText(), (double) spinnerNota.getValue(),(int) spinnerAno.getValue(),(int) spinnerCurso.getValue(), comboBoxGrupo.getSelectedItem().toString());
+				
+		return pro;
 	}
 	
 	private int obtenerGrupo(Proyecto pro) {

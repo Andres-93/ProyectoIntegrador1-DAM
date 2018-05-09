@@ -7,6 +7,7 @@ import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
 import modelo.Alumno;
+import persistencias.AlumnoPersistencia;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -29,6 +30,7 @@ public class ModificarAlumnos extends JPanel {
 	private JButton btnCancelar;
 	private JList list;
 	private JButton btnModificar;
+	private JButton btnFiltrar;
 	public ModificarAlumnos() {
 		inicializar();
 	}
@@ -41,7 +43,7 @@ public class ModificarAlumnos extends JPanel {
 		}
 		
 		setLayout(null);
-		
+		setBounds(0,0,700,625);
 		JLabel lblConsultarAlumnos = new JLabel("MODIFICAR ALUMNOS");
 		lblConsultarAlumnos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultarAlumnos.setForeground(Color.WHITE);
@@ -71,11 +73,11 @@ public class ModificarAlumnos extends JPanel {
 		
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Nombre", "N\u00BA Expediente"}));
-		comboBox.setBounds(97, 209, 115, 41);
+		comboBox.setBounds(94, 182, 115, 41);
 		add(comboBox);
 		
 		textFiltro = new JTextField();
-		textFiltro.setBounds(325, 209, 255, 41);
+		textFiltro.setBounds(339, 182, 255, 41);
 		add(textFiltro);
 		textFiltro.setColumns(10);
 		
@@ -101,6 +103,17 @@ public class ModificarAlumnos extends JPanel {
 		btnModificar.setBounds(116, 561, 188, 55);
 		add(btnModificar);
 		
+		btnFiltrar = new JButton("");
+		btnFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnFiltrar.setRolloverIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/botonFiltrarPulsado.png")));
+		btnFiltrar.setIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/botonFiltrar.png")));
+		btnFiltrar.setFocusPainted(false);
+		btnFiltrar.setContentAreaFilled(false);
+		btnFiltrar.setBorderPainted(false);
+		btnFiltrar.setBorder(null);
+		btnFiltrar.setBounds(211, 243, 188, 55);
+		add(btnFiltrar);
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(ModificarAlumnos.class.getResource("/images/FondoAlumnos700X700.png")));
 		lblNewLabel.setBounds(0, 0, 700, 625);
@@ -110,6 +123,7 @@ public class ModificarAlumnos extends JPanel {
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
 		btnCancelar.addActionListener(c);
 		btnModificar.addActionListener(c);
+		btnFiltrar.addActionListener(c);
 	}
 	public JButton getButton() {
 		return btnCancelar;
@@ -117,6 +131,11 @@ public class ModificarAlumnos extends JPanel {
 		
 	public JButton getBtnModificar() {
 		return btnModificar;
+	}
+	
+	
+	public JButton getBtnFiltrar() {
+		return btnFiltrar;
 	}
 	public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
 		
@@ -138,5 +157,21 @@ public class ModificarAlumnos extends JPanel {
 		return al;
 	}
 	
-	
+	public void filtrar() {
+		
+		ArrayList<Alumno> lista;
+		
+		String consulta = "";
+		
+		if(comboBox.getSelectedIndex() == 0) {
+			consulta = "Select * from alumnos where nombre like '%" + textFiltro.getText() + "%'";
+		}else {
+			consulta = "Select * from alumnos where numExpediente ="  + textFiltro.getText() ;
+		}
+
+		lista = new AlumnoPersistencia().cargarAlumnosFiltrado(consulta);
+		
+		mostrarAlumnos(lista);
+		
+	}
 }

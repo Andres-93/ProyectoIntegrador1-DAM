@@ -131,7 +131,7 @@ public class CicloPersistencia {
 	        }						
 	}
 	
-	public int obtenerID(Ciclo ci) {
+	public int obtenerID(String ci) {
 		
 		int id = 0;
 		PreparedStatement sm = null;
@@ -142,7 +142,7 @@ public class CicloPersistencia {
 			System.out.println("Conectado");
 									
 			sm = con.prepareStatement("select id_c from ciclos where nombre = ?");
-            sm.setString(1, ci.getNombre());
+            sm.setString(1, ci);
             rs = sm.executeQuery();
             
             id = rs.getInt(1);

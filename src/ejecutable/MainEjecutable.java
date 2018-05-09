@@ -6,6 +6,7 @@ import controlador.ControladorApp;
 import vista.AñadirCiclo;
 import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
+import vista.ConsultaCiclos;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
@@ -45,6 +46,7 @@ public class MainEjecutable {
 				EliminarProyecto panel14 = new EliminarProyecto();
 				ModificarProyecto panel15 = new ModificarProyecto();
 				ModificarProyectoJD panel16 = new ModificarProyectoJD();
+				ConsultaCiclos panel17 = new ConsultaCiclos();
 				ControladorApp control = new ControladorApp(prueba);
 				
 				//con.conectar();							//Abrimos la comunicacion con la base de datos
@@ -66,6 +68,7 @@ public class MainEjecutable {
 				control.setPanel14(panel14);
 				control.setPanel15(panel15);
 				control.setPanel16(panel16);
+				control.setPanel17(panel17);
 				
 				panel2.setControlador(control);		//Todos los panelesd se le presentan al controlador
 				panel1.setControlador(control);
@@ -84,9 +87,10 @@ public class MainEjecutable {
 				panel14.setControlador(control);
 				panel15.setControlador(control);
 				panel16.setControlador(control);
+				panel17.setControlador(control);
 				
 				prueba.hacerVisible();
-				prueba.setPanel(panel2);
+				prueba.setPanel(panel2);			//Queremos que la aplicacion empiece con el panel del login como primera ventana
 			}
 		});
 
