@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import ejecutable.Conexion;
+
 import persistencias.AlumnoPersistencia;
 import persistencias.CicloPersistencia;
 import persistencias.PoryectoPersistencia;
@@ -14,6 +14,7 @@ import vista.AñadirCiclo;
 import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
 import vista.ConsultaCiclos;
+import vista.ConsultaProyecto;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
@@ -51,6 +52,7 @@ public class ControladorApp implements ActionListener{
 	private ModificarProyecto panel15;
 	private ModificarProyectoJD panel16;
 	private ConsultaCiclos panel17;
+	private ConsultaProyecto panel18;
 					
 	
 
@@ -127,6 +129,10 @@ public class ControladorApp implements ActionListener{
 		this.panel17 = panel17;
 	}
 
+	public void setPanel18(ConsultaProyecto panel18) {
+		this.panel18 = panel18;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		//Si entramos como profesores tendremos los permisos, en caso de introducir usuario o contraseña no validos nos lo muestra por un Joption.	
@@ -155,7 +161,7 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntmAadirAl())) {
 			vistaP.setPanel(panel3);
 			
-		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar()) || e.getSource().equals(panel14.getBtnCancelar()) || e.getSource().equals(panel15.getBtnCancelar()) || e.getSource().equals(panel17.getBtnCancelar())) {
+		}else if(e.getSource().equals(panel3.getBtnCancelar()) || e.getSource().equals(panel4.getBtnCancelar()) || e.getSource().equals(panel5.getButton()) || e.getSource().equals(panel7.getBtnCancelCicloA()) || e.getSource().equals(panel9.getBtnCanceloar()) || e.getSource().equals(panel10.getBtnCancelar()) || e.getSource().equals(panel12.getBtnCancelar()) || e.getSource().equals(panel14.getBtnCancelar()) || e.getSource().equals(panel15.getBtnCancelar()) || e.getSource().equals(panel17.getBtnCancelar()) || e.getSource().equals(panel18.getBtnCancelar())) {
 			vistaP.setPanel(panel1);	
 			
 		}else if(e.getSource().equals(vistaP.getMntmEliminar())) {
@@ -291,6 +297,15 @@ public class ControladorApp implements ActionListener{
 		}else if(e.getSource().equals(vistaP.getMntConsultaCiclo())) {
 			vistaP.setPanel(panel17);
 			panel17.mostrarCiclos(new CicloPersistencia().cargarCiclos());
+			
+		}else if(e.getSource().equals(vistaP.getMntmConsultarProyecto())) {
+			vistaP.setPanel(panel18);
+			panel18.mostrarProyectos(new PoryectoPersistencia().cargarProyectos());
+			
+		}else if(e.getSource().equals(panel18.getBtnFiltrarPro())){			
+			if(!panel18.filtrar().equals("")){
+				panel18.mostrarProyectos(new PoryectoPersistencia().cargarProyectosFiltrado(panel18.filtrar()));			
+			}
 		}
 	}
 }

@@ -372,5 +372,50 @@ public void añadirProyecto(Proyecto pro) {
 	        }		
 	}
 	
+	public ArrayList<Proyecto> cargarProyectosFiltrado(String consulta) {
+		
+		ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>();
+		Proyecto pro;
+		Statement st = null;
+        ResultSet rs = null;
+		
+				
+		try {		
+			con = conexion.conectar();
+			System.out.println("Conectado");
+			
+			st = con.createStatement();
+			rs = st.executeQuery(consulta);
+           
+           while(rs.next()) {      	   
+        	   pro = new Proyecto(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+        	   proyectos.add(pro);      	   
+           }
+           
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error");
+        }catch(ClassNotFoundException er) {
+        	er.printStackTrace();
+        }catch(Exception e) {
+        	JOptionPane.showMessageDialog(null, "Error 2", "Error", JOptionPane.CANCEL_OPTION);
+        }finally {	        	
+        	try {
+        		if(rs != null) {
+        			rs.close();
+        		}
+        		if(st != null) {
+        			st.close();
+        		}
+        		if (con != null) {
+        			conexion.desconectar(con);
+        		}	    	
+    		}catch(SQLException e) {
+    			 System.out.println(e.getMessage());
+    		}		        	
+        }
+		
+		return proyectos;
+	}
+	
 	
 }

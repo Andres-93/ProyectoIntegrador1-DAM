@@ -38,7 +38,7 @@ public class VistaPrincipal extends JFrame{
 	private JSeparator separator;
 	private JMenu mnProyectos;
 	private JSeparator separator_1;
-	private JMenuItem mntConsultaPro;
+	private JMenuItem mntModificarPro;
 	private JMenuItem mntAadirPro;
 	private JMenuItem mntEliminarPro;
 	private JMenuItem mtnModificarCi;
@@ -49,6 +49,7 @@ public class VistaPrincipal extends JFrame{
 	private JMenuItem mntRegistrarProfesor;
 	private JMenuItem mntConsultar;
 	private JMenuItem mntConsultaCiclo;
+	private JMenuItem mntmConsultarProyecto;
 	
 	public VistaPrincipal() {
 		inicializar();
@@ -122,11 +123,17 @@ public class VistaPrincipal extends JFrame{
 		mnProyectos.setBackground(new Color(0, 0, 204));
 		menuBar.add(mnProyectos);
 		
-		mntConsultaPro = new JMenuItem("Consultar");
-		mntConsultaPro.setForeground(Color.WHITE);
-		mntConsultaPro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		mntConsultaPro.setBackground(new Color(0, 153, 255));
-		mnProyectos.add(mntConsultaPro);
+		mntmConsultarProyecto = new JMenuItem("Consultar");
+		mntmConsultarProyecto.setBackground(new Color(0, 153, 255));
+		mntmConsultarProyecto.setForeground(Color.WHITE);
+		mntmConsultarProyecto.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnProyectos.add(mntmConsultarProyecto);
+		
+		mntModificarPro = new JMenuItem("Modificar");
+		mntModificarPro.setForeground(Color.WHITE);
+		mntModificarPro.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mntModificarPro.setBackground(new Color(0, 153, 255));
+		mnProyectos.add(mntModificarPro);
 		
 		mntAadirPro = new JMenuItem("A\u00F1adir");
 		mntAadirPro.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -201,6 +208,7 @@ public class VistaPrincipal extends JFrame{
 			mntRegistrarProfesor.setEnabled(true);
 			mntModificarAl.setEnabled(true);
 			mtnModificarCi.setEnabled(true);
+			mntModificarPro.setEnabled(true);
 		}
 		else {
 			mntmAadirAl.setEnabled(false);
@@ -212,6 +220,7 @@ public class VistaPrincipal extends JFrame{
 			mntRegistrarProfesor.setEnabled(false);
 			mntModificarAl.setEnabled(false);
 			mtnModificarCi.setEnabled(false);
+			mntModificarPro.setEnabled(false);
 		}
 		
 	}
@@ -220,7 +229,7 @@ public class VistaPrincipal extends JFrame{
 		mntModificarAl.addActionListener(c);
 		mntmAadirAl.addActionListener(c);
 		mntmEliminar.addActionListener(c);
-		mntConsultaPro.addActionListener(c);
+		mntModificarPro.addActionListener(c);
 		mntAadirPro.addActionListener(c);
 		mntEliminarPro.addActionListener(c);
 		mtnModificarCi.addActionListener(c);
@@ -229,10 +238,15 @@ public class VistaPrincipal extends JFrame{
 		mntRegistrarProfesor.addActionListener(c);
 		mntConsultar.addActionListener(c);
 		mntConsultaCiclo.addActionListener(c);
+		mntmConsultarProyecto.addActionListener(c);
 	}
 	
 	
 	
+	public JMenuItem getMntmConsultarProyecto() {
+		return mntmConsultarProyecto;
+	}
+
 	public JMenuItem getMntConsultaCiclo() {
 		return mntConsultaCiclo;
 	}
@@ -254,7 +268,7 @@ public class VistaPrincipal extends JFrame{
 	}
 
 	public JMenuItem getMntConsultaPro() {
-		return mntConsultaPro;
+		return mntModificarPro;
 	}
 
 	public JMenuItem getMntAadirPro() {
