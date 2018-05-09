@@ -14,7 +14,7 @@ import modelo.Ciclo;
 
 public class CicloPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:C:\\Users\\PcCom\\Desktop\\sqlite\\SQLiteDatabaseBrowserPortable\\Data\\Prueba.db");
+	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
 
 	Connection con;
 	
@@ -205,5 +205,67 @@ public class CicloPersistencia {
 	    			 System.out.println("No se pudo cerrar");
 	    		}		        	
 	        }											
-	}		
+	}
+	
+	public String obtenerCiclo(String nombre) {
+		
+		PreparedStatement sm = null;
+		ResultSet rs = null;
+		Ciclo ci = null;
+		int id = 0;
+		String nombreCiclo="";
+						
+		try {
+			con = conexion.conectar();
+			System.out.println("Conectado");
+									
+			sm = con.prepareStatement("select ciclo from proyectos where nombre = ?");
+            sm.setString(1, nombre);
+            rs = sm.executeQuery();
+            
+            while(rs.next()) {
+            	id = rs.getInt(1);
+            }
+            
+            if(rs!= null) {
+    			rs.close();
+    		}
+            if(sm != null) {
+    			sm.close();
+    		}
+            
+            sm = con.prepareStatement("select nombre from ciclos where id_c = ?");
+            sm.setInt(1, id);
+            rs = sm.executeQuery();
+            
+            while(rs.next()) {
+            	nombreCiclo = rs.getString(1);
+            }
+            
+            
+	        } catch (SQLException ex) {
+	           JOptionPane.showMessageDialog(null, "Error");
+	        }catch(ClassNotFoundException er) {
+	        	er.printStackTrace();
+	        }catch(Exception e) {
+	        	JOptionPane.showMessageDialog(null, "Error 2", "Error", JOptionPane.CANCEL_OPTION);
+	        }finally {	        	
+	        	try {
+	        		if(rs!= null) {
+	        			rs.close();
+	        		}
+	        		if(sm != null) {
+	        			sm.close();
+	        		}
+	        		if (con != null) {
+	        			conexion.desconectar(con);
+	        		}	    	
+	    		}catch(SQLException e) {
+	    			 System.out.println("No se pudo cerrar");
+	    		}		        	
+	        }		
+						
+		return nombreCiclo;
+	}
+	
 }

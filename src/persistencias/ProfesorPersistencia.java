@@ -11,7 +11,7 @@ import modelo.Profesor;
 
 public class ProfesorPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:C:\\Users\\PcCom\\Desktop\\sqlite\\SQLiteDatabaseBrowserPortable\\Data\\Prueba.db");
+	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
 
 	Connection con;
 		

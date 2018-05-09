@@ -250,9 +250,8 @@ public class ModificarProyectoJD extends JDialog {
 		spinnerAno.setValue(pro.getAño());
 		spinnerCurso.setValue(pro.getCurso());
 		spinnerNota.setValue(pro.getNota());
-		mostrarCiclos(new CicloPersistencia().cargarCiclos());
 		
-
+		mostrarCiclos(new CicloPersistencia().cargarCiclos(),	new CicloPersistencia().obtenerCiclo(pro.getNombre()));
 	}
 	
 	
@@ -268,10 +267,22 @@ public class ModificarProyectoJD extends JDialog {
 		return al;
 	}
 	
-	public void mostrarCiclos(ArrayList<Ciclo> ciclos) {
+	public void mostrarCiclos(ArrayList<Ciclo> ciclos,String nombre) {
+		
+		boolean continuar = true;
+		comboBoxCiclo.removeAllItems();
 		
 		for(int i = 0; i < ciclos.size();i++) {
 			comboBoxCiclo.addItem(ciclos.get(i));
+		}
+		
+		for(int j= 0; j <ciclos.size() && continuar; j++) {		
+			if(ciclos.get(j).getNombre().equals(nombre)) {
+				comboBoxCiclo.setSelectedIndex(j);
+				continuar = false;
+			
+			}
+			
 		}
 					
 	}

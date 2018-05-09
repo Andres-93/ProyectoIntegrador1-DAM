@@ -15,7 +15,7 @@ import modelo.Proyecto;
 
 public class PoryectoPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:C:\\Users\\PcCom\\Desktop\\sqlite\\SQLiteDatabaseBrowserPortable\\Data\\Prueba.db");
+	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
 
 	Connection con;
 		
