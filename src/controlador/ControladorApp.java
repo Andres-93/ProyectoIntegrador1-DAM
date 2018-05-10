@@ -304,8 +304,11 @@ public class ControladorApp implements ActionListener{
 			
 		}else if(e.getSource().equals(panel18.getBtnFiltrarPro())){			
 			if(!panel18.filtrar().equals("")){
-				panel18.mostrarProyectos(new PoryectoPersistencia().cargarProyectosFiltrado(panel18.filtrar()));			
+				panel18.mostrarProyectos(new PoryectoPersistencia().cargarProyectosFiltrado(panel18.filtrar()));						
 			}
+			
+		}else if(e.getSource().equals(panel10.getBtnFiltrarCiclos())) {
+			panel10.filtrar();
 		}
 	}
 }

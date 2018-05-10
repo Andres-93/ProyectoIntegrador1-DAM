@@ -16,12 +16,22 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
+import modelo.Alumno;
 import modelo.Ciclo;
+import persistencias.AlumnoPersistencia;
+import persistencias.CicloPersistencia;
+
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ModificarCliclo extends JPanel {
 	private JList listCiclos;
 	private JButton btnModificarCi;
 	private JButton btnCancelar;
+	private JTextField textFiltro;
+	private JButton btnFiltrarCiclos;
+	private JComboBox comboBox;
 	public ModificarCliclo() {
 		inicializar();
 	}
@@ -77,6 +87,35 @@ public class ModificarCliclo extends JPanel {
 		btnCancelar.setBounds(443, 559, 188, 55);
 		add(btnCancelar);
 		
+		JLabel label_2 = new JLabel("FILTRAR:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Sitka Small", Font.BOLD, 18));
+		label_2.setBounds(25, 123, 115, 41);
+		add(label_2);
+		
+		textFiltro = new JTextField();
+		textFiltro.setBounds(284, 161, 290, 41);
+		add(textFiltro);
+		textFiltro.setColumns(10);
+		
+		btnFiltrarCiclos = new JButton("");
+		btnFiltrarCiclos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnFiltrarCiclos.setRolloverIcon(new ImageIcon(ModificarCliclo.class.getResource("/images/botonFiltrarPulsado.png")));
+		btnFiltrarCiclos.setIcon(new ImageIcon(ModificarCliclo.class.getResource("/images/botonFiltrar.png")));
+		btnFiltrarCiclos.setFocusPainted(false);
+		btnFiltrarCiclos.setContentAreaFilled(false);
+		btnFiltrarCiclos.setBorderPainted(false);
+		btnFiltrarCiclos.setBorder(null);
+		btnFiltrarCiclos.setBounds(223, 212, 188, 55);
+		add(btnFiltrarCiclos);
+		
+		comboBox = new JComboBox();
+		comboBox.setForeground(new Color(0, 0, 204));
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 15));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Ver todos", "Nombre"}));
+		comboBox.setBounds(111, 161, 115, 41);
+		add(comboBox);
+		
 		
 		
 		JLabel label = new JLabel("");
@@ -88,6 +127,7 @@ public class ModificarCliclo extends JPanel {
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
 		btnModificarCi.addActionListener(c);
 		btnCancelar.addActionListener(c);
+		btnFiltrarCiclos.addActionListener(c);
 	}
 	
 	public JButton getBtnModificarCi() {
@@ -97,6 +137,11 @@ public class ModificarCliclo extends JPanel {
 		return btnCancelar;
 	}
 	
+	
+	
+	public JButton getBtnFiltrarCiclos() {
+		return btnFiltrarCiclos;
+	}
 	public void mostrarCiclos(ArrayList<Ciclo> ciclos) {
 		
 		DefaultListModel<Ciclo> model = new DefaultListModel<Ciclo>();
@@ -117,5 +162,23 @@ public class ModificarCliclo extends JPanel {
 
 		return ci;
 	}
-
+	
+	public void filtrar() {
+		
+		ArrayList<Ciclo> listaFiltrada = new ArrayList<Ciclo>();
+		ArrayList<Ciclo> listaCompleta = new CicloPersistencia().cargarCiclos();
+		
+		if(comboBox.getSelectedItem().toString().equals("Ver todos")) {
+			
+			mostrarCiclos(listaCompleta);
+			
+		}else {
+			for(int i = 0; i < listaCompleta.size();i++) {
+				if(listaCompleta.get(i).getNombre().equals(textFiltro.getText())) {
+					listaFiltrada.add(listaCompleta.get(i));
+				}
+			}
+			mostrarCiclos(listaFiltrada);
+		}		
+	}	
 }
