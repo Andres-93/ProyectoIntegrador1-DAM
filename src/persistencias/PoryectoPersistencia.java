@@ -19,7 +19,7 @@ public class PoryectoPersistencia {
 
 	Connection con;
 		
-	
+	//c
 public void añadirProyecto(Proyecto pro) {
 		
 		PreparedStatement st = null;	
