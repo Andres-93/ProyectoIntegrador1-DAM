@@ -69,11 +69,12 @@ public class RegistrarProfesor extends JDialog {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(RegistrarProfesor.class.getResource("/images/FondoAlumnos700X700.png")));
-		label.setBounds(0, 0, 384, 361);
+		label.setBounds(0, 0, 394, 371);
 		getContentPane().add(label);
 		setBounds(0, 0, 400, 400);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setLocationRelativeTo(null);
+		setResizable(false);
 	}
 	
 	public void hacerVisible() {

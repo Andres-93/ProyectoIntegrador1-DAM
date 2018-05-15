@@ -34,7 +34,7 @@ public class ModificarCicloJD extends JDialog {
 		lblModificarCiclo.setForeground(Color.WHITE);
 		lblModificarCiclo.setFont(new Font("Sylfaen", Font.BOLD, 44));
 		lblModificarCiclo.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
-		lblModificarCiclo.setBounds(32, 11, 445, 72);
+		lblModificarCiclo.setBounds(74, 21, 445, 72);
 		getContentPane().add(lblModificarCiclo);
 		
 		JLabel label_1 = new JLabel("Nombre");
@@ -52,12 +52,12 @@ public class ModificarCicloJD extends JDialog {
 		getContentPane().add(lblDescripcion);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(217, 120, 260, 42);
+		textNombre.setBounds(208, 120, 341, 42);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		textDescripcion = new JTextArea();
-		textDescripcion.setBounds(208, 213, 284, 106);
+		textDescripcion.setBounds(208, 213, 341, 159);
 		getContentPane().add(textDescripcion);
 		
 		btnModiCi = new JButton("");
@@ -68,7 +68,7 @@ public class ModificarCicloJD extends JDialog {
 		btnModiCi.setContentAreaFilled(false);
 		btnModiCi.setBorderPainted(false);
 		btnModiCi.setBorder(null);
-		btnModiCi.setBounds(32, 432, 188, 55);
+		btnModiCi.setBounds(48, 453, 188, 55);
 		getContentPane().add(btnModiCi);
 		
 		btnCancelar = new JButton("");
@@ -79,7 +79,7 @@ public class ModificarCicloJD extends JDialog {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setBorder(null);
-		btnCancelar.setBounds(273, 432, 188, 55);
+		btnCancelar.setBounds(331, 453, 188, 55);
 		getContentPane().add(btnCancelar);
 		setBounds(0, 0, 594, 646);
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -87,7 +87,7 @@ public class ModificarCicloJD extends JDialog {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ModificarCicloJD.class.getResource("/images/FondoAlumnos700X700.png")));
-		label.setBounds(0, 0, 502, 546);
+		label.setBounds(0, 0, 578, 607);
 		getContentPane().add(label);
 	}
 	

@@ -8,6 +8,7 @@ import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
 import vista.ConsultaCiclos;
 import vista.ConsultaProyecto;
+import vista.DetalleProyecto;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
@@ -49,6 +50,7 @@ public class MainEjecutable {
 				ModificarProyectoJD panel16 = new ModificarProyectoJD();
 				ConsultaCiclos panel17 = new ConsultaCiclos();
 				ConsultaProyecto panel18 = new ConsultaProyecto();
+				DetalleProyecto panel19 = new DetalleProyecto();
 				ControladorApp control = new ControladorApp(prueba);
 								
 				control.setPanel1(panel1);
@@ -69,6 +71,7 @@ public class MainEjecutable {
 				control.setPanel16(panel16);
 				control.setPanel17(panel17);
 				control.setPanel18(panel18);
+				control.setPanel19(panel19);
 				
 				panel2.setControlador(control);		//Todos los panelesd se le presentan al controlador
 				panel1.setControlador(control);
@@ -89,6 +92,7 @@ public class MainEjecutable {
 				panel16.setControlador(control);
 				panel17.setControlador(control);
 				panel18.setControlador(control);
+				panel19.setControlador(control);
 				
 				prueba.hacerVisible();
 				prueba.setPanel(panel2);			//Queremos que la aplicacion empiece con el panel del login como primera ventana

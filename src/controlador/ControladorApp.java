@@ -15,6 +15,7 @@ import vista.AñadirProyecto;
 import vista.ConsultaAlumnoNuevo;
 import vista.ConsultaCiclos;
 import vista.ConsultaProyecto;
+import vista.DetalleProyecto;
 import vista.ModificarAlumnos;
 import vista.EliminarAlumno;
 import vista.EliminarCiclo;
@@ -53,6 +54,7 @@ public class ControladorApp implements ActionListener{
 	private ModificarProyectoJD panel16;
 	private ConsultaCiclos panel17;
 	private ConsultaProyecto panel18;
+	private DetalleProyecto panel19;
 					
 	
 
@@ -132,6 +134,10 @@ public class ControladorApp implements ActionListener{
 	public void setPanel18(ConsultaProyecto panel18) {
 		this.panel18 = panel18;
 	}
+	
+	public void setPanel19(DetalleProyecto panel19) {
+		this.panel19 = panel19;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {	
@@ -181,11 +187,12 @@ public class ControladorApp implements ActionListener{
 			JOptionPane.showConfirmDialog(null, "Ninguno de los campos debe estar en blanco","Error", JOptionPane.CLOSED_OPTION);
 		}
 		else {
-			new ProfesorPersistencia().añadirProfesor(panel6.getDatos());	//PRUEBAS
+			new ProfesorPersistencia().añadirProfesor(panel6.getDatos());	
+			panel6.dispose();
 		}
-			//prof.añadirProfesor(panel6.getDatos()); 						//PRUEBAS
 			
-			//con.añadirProfesor(panel6.getDatos());																		
+			
+																				
 		}else if(e.getSource().equals(panel3.getBtnAnadir())) {
 			new AlumnoPersistencia().añadirAlumno(panel3.getDatos());
 			
@@ -309,6 +316,13 @@ public class ControladorApp implements ActionListener{
 			
 		}else if(e.getSource().equals(panel10.getBtnFiltrarCiclos())) {
 			panel10.filtrar();
+			
+		}else if(e.getSource().equals(panel18.getBtnDetalles())) {
+			panel19.mostrarProyecto(panel18.proyectoSeleccionado());
+			panel19.setVisible(true);
+			
+		}else if(e.getSource().equals(panel19.getBtnCancelar())) {
+			panel19.dispose();
 		}
 	}
 }

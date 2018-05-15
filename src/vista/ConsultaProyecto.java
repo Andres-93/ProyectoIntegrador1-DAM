@@ -7,6 +7,7 @@ import javax.swing.border.MatteBorder;
 
 import controlador.ControladorApp;
 import modelo.Proyecto;
+import persistencias.CicloPersistencia;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -111,7 +112,7 @@ public class ConsultaProyecto extends JPanel {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ConsultaProyecto.class.getResource("/images/FondoAlumnos700X700.png")));
-		label.setBounds(0, 0, 700, 614);
+		label.setBounds(0, 0, 700, 625);
 		add(label);
 	}
 	
@@ -159,11 +160,20 @@ public class ConsultaProyecto extends JPanel {
 				consulta = "Select * from proyectos,alumnos,se_realizan where se_realizan.alumno = alumnos.ID_A  and se_realizan.proyecto = proyectos.id_p and alumnos.expediente = " + textFiltro.getText();
 			}else if(comboBoxFiltro.getSelectedIndex() == 0) {
 				consulta = "Select * from proyectos"; 
+			}else if(comboBoxFiltro.getSelectedIndex() == 5) {
+				consulta = "Select * from proyectos where ciclo =" + new CicloPersistencia().obtenerID(textFiltro.getText());
 			}
 		}else {
 			JOptionPane.showConfirmDialog(null, "No debe dejar el espacion en blanco","Error",JOptionPane.CANCEL_OPTION);
 		}
 	return consulta;
+	}
+	
+	public Proyecto proyectoSeleccionado() {
+		
+		Proyecto pro = listProyectos.getSelectedValue();
+		
+		return pro;
 	}
 	
 }

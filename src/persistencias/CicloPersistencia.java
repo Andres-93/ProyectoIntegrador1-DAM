@@ -206,7 +206,9 @@ public class CicloPersistencia {
 	    		}		        	
 	        }											
 	}
-	
+	/*
+	 * Obtenemos el nombre de un ciclo apartir del nombre del proyecto.
+	 */
 	public String obtenerCiclo(String nombre) {
 		
 		PreparedStatement sm = null;
