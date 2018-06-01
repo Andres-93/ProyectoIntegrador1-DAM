@@ -21,7 +21,6 @@ import java.awt.Cursor;
 public class añadirAlumnos extends JPanel {
 	private JTextField textNombreAl;
 	private JTextField textExpAl;
-	private JTextField textApellidoAl;
 	private JButton btnCancelar;
 	private JButton btnAnadir;
 	public añadirAlumnos() {
@@ -40,14 +39,9 @@ public class añadirAlumnos extends JPanel {
 		setLayout(null);
 		setBounds(0,0,700,700);
 		textNombreAl = new JTextField();
-		textNombreAl.setBounds(348, 234, 245, 36);
+		textNombreAl.setBounds(325, 264, 298, 36);
 		add(textNombreAl);
 		textNombreAl.setColumns(10);
-		
-		textApellidoAl = new JTextField();
-		textApellidoAl.setColumns(10);
-		textApellidoAl.setBounds(348, 326, 245, 36);
-		add(textApellidoAl);
 		
 		textExpAl = new JTextField();
 		textExpAl.setColumns(10);
@@ -84,19 +78,12 @@ public class añadirAlumnos extends JPanel {
 		lblNewLabel_3.setBounds(121, 85, 502, 90);
 		add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nombre");
+		JLabel lblNewLabel_2 = new JLabel("Nombre Completo");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Sitka Small", Font.BOLD, 20));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(98, 230, 188, 42);
+		lblNewLabel_2.setBounds(37, 260, 236, 42);
 		add(lblNewLabel_2);
-		
-		JLabel lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblApellidos.setForeground(Color.WHITE);
-		lblApellidos.setFont(new Font("Sitka Small", Font.BOLD, 20));
-		lblApellidos.setBounds(98, 322, 188, 42);
-		add(lblApellidos);
 		
 		JLabel lblNumeroDeExpediente = new JLabel("N\u00BA Expediente");
 		lblNumeroDeExpediente.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,12 +111,18 @@ public class añadirAlumnos extends JPanel {
 	public Alumno getDatos() {
 		
 		Alumno alumno = null;
-		try {
-			alumno = new Alumno(textNombreAl.getText(), Integer.parseInt(textExpAl.getText()));
-		}catch(NumberFormatException e) {
-			JOptionPane.showConfirmDialog(null, "Error, el expediente deben ser unicamente numeros", "Error al introducir datos", JOptionPane.CANCEL_OPTION);
-		}
 		
+		if(textNombreAl.getText().equals("") || textExpAl.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Ninguno de los campos debe estar en blanco");
+		}else {
+			try {
+				alumno = new Alumno(textNombreAl.getText(), Integer.parseInt(textExpAl.getText()));
+			}catch(NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Error, el expediente deben ser unicamente numeros");
+				
+			}
+		}
+			
 		return alumno;
 	}
 

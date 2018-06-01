@@ -17,6 +17,11 @@ public class AlumnoPersistencia {
 
 	Connection con;
 		
+	
+	
+	/*
+	 * Metodo que recibe un objeto de tipo alumno y lo añade a la base de datos.
+	 */
 	public void añadirAlumno(Alumno alu) {
 		
 		PreparedStatement st = null;
@@ -51,7 +56,9 @@ public class AlumnoPersistencia {
         }
 	}
 	
-	
+	/*
+	 *Metodo que devolvera un arrayList de alumnos con la lista completa de alumnos guardados en la base de datos 
+	 */	
 	public ArrayList<Alumno> cargarAlumnos() {
 		
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
@@ -98,8 +105,10 @@ public class AlumnoPersistencia {
 		return alumnos;
 	}
 	
-	
-	
+	/*
+	 * Metodo que recibe un objeto de tipo alumno y elimina dicho alumno de la base de datos.
+	 */
+
 	public void eliminarAlumno(Alumno al) {
 		
 		 PreparedStatement st = null;
@@ -135,6 +144,9 @@ public class AlumnoPersistencia {
 	        }				
 	}	
 	
+	/*
+	 * Metodo que recibe un alumno y el id de dicho alumno para poder modificarle con nuevos valores en sus campos.
+	 */
 	public void modificarAlumno(Alumno al, int id) {
 				
 		PreparedStatement sm = null;
@@ -173,6 +185,9 @@ public class AlumnoPersistencia {
 					
 	}
 	
+	/*
+	 * Metodo que recibe un alumno y devuelve el id de dicho alumno.
+	 */
 	public int obtenerID(Alumno al) {
 		
 		int id = 0;
@@ -212,6 +227,9 @@ public class AlumnoPersistencia {
 		return id;
 	}
 	
+	/*
+	 * Metodo que devolvera un arraylist de los alumnos de la base de datos, pero filtrados por un parametro que recibe el metodo.
+	 */
 	public ArrayList<Alumno> cargarAlumnosFiltrado(String consulta) {
 		
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();

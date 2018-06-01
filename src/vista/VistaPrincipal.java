@@ -194,6 +194,7 @@ public class VistaPrincipal extends JFrame{
 		mntRegistrarProfesor.setForeground(Color.WHITE);
 		mntRegistrarProfesor.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		mnMenuRegistrar.add(mntRegistrarProfesor);
+		setResizable(false);
 	}
 	
 	public void permisosProfesor(boolean permitir) {

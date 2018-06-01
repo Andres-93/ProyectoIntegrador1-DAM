@@ -41,17 +41,11 @@ public class EliminarAlumno extends JPanel {
 		JLabel lblListaAlumnos = new JLabel("LISTA ALUMNOS:");
 		lblListaAlumnos.setForeground(Color.WHITE);
 		lblListaAlumnos.setFont(new Font("Sitka Small", Font.BOLD, 20));
-		lblListaAlumnos.setBounds(97, 266, 204, 41);
+		lblListaAlumnos.setBounds(97, 178, 204, 41);
 		add(lblListaAlumnos);
 		
-		JLabel lblFiltros = new JLabel("FILTROS:");
-		lblFiltros.setForeground(Color.WHITE);
-		lblFiltros.setFont(new Font("Sitka Small", Font.BOLD, 18));
-		lblFiltros.setBounds(97, 131, 115, 41);
-		add(lblFiltros);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(128, 318, 498, 208);
+		scrollPane.setBounds(123, 242, 498, 249);
 		add(scrollPane);
 		
 		list = new JList();
@@ -89,7 +83,7 @@ public class EliminarAlumno extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(EliminarAlumno.class.getResource("/images/FondoAlumnos700X700.png")));
-		lblNewLabel.setBounds(0, 0, 700, 625);
+		lblNewLabel.setBounds(0, 0, 700, 626);
 		add(lblNewLabel);
 	}
 	
@@ -122,7 +116,7 @@ public class EliminarAlumno extends JPanel {
 	//DEMOMENTO SOLO PERMITO ELIMINAR UN ALUMNO SELECCIONANDOLO.
 	public Alumno alumnosAEliminar() {
 		
-		Alumno al;
+		Alumno al = null;
 		
 		al = (Alumno) list.getSelectedValue();
 

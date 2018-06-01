@@ -192,15 +192,20 @@ public class ControladorApp implements ActionListener{
 		}
 			
 			
-																				
+			//TODO																	
 		}else if(e.getSource().equals(panel3.getBtnAnadir())) {
-			new AlumnoPersistencia().añadirAlumno(panel3.getDatos());
+			if(panel3.getDatos() != null) {
+				new AlumnoPersistencia().añadirAlumno(panel3.getDatos());
+			}
 			
-			//alu.añadirAlumno(panel3.getDatos());
 			
 		} else if(e.getSource().equals(panel4.getBtnEliminarAl())) {
-			new AlumnoPersistencia().eliminarAlumno(panel4.alumnosAEliminar());
-			panel4.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
+			if(panel4.alumnosAEliminar() != null) {
+				new AlumnoPersistencia().eliminarAlumno(panel4.alumnosAEliminar());
+				panel4.mostrarAlumnos(new AlumnoPersistencia().cargarAlumnos());
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno para eliminarle");
+			}
 			
 		}else if(e.getSource().equals(vistaP.getMntAadirCi())) {
 			vistaP.setPanel(panel7);
@@ -217,8 +222,8 @@ public class ControladorApp implements ActionListener{
 			try {
 				panel8.mostrarDatos(panel5.obtenerSeleccionado());
 				panel8.hacerVisible();
-			}catch(NullPointerException error) {
-				JOptionPane.showConfirmDialog(null, "Debe seleccionar un alumno para modificarle","Error",JOptionPane.CANCEL_OPTION);
+			}catch(NullPointerException error) {				
+				JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno para modificarle");
 			}
 			
 		}else if(e.getSource().equals(panel8.getBtnModificarJD())) {			
