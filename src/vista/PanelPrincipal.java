@@ -25,14 +25,14 @@ public class PanelPrincipal extends JPanel {
 	}
 
 	private void inicializar() {
-		
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		setLayout(null);
-		setBounds(0,0,700,700);
+		setBounds(0, 0, 700, 700);
 		JLabel lblAplicacion = new JLabel("");
 		lblAplicacion.setIcon(new ImageIcon(PanelPrincipal.class.getResource("/images/LogoMirmidon.png")));
 		lblAplicacion.setForeground(Color.WHITE);
@@ -40,17 +40,18 @@ public class PanelPrincipal extends JPanel {
 		lblAplicacion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAplicacion.setBounds(120, 91, 442, 332);
 		add(lblAplicacion);
-		
+
 		btnNewButton = new JButton("");
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setRolloverIcon(new ImageIcon(PanelPrincipal.class.getResource("/images/botonDesconectarPulsado.png")));
+		btnNewButton.setRolloverIcon(
+				new ImageIcon(PanelPrincipal.class.getResource("/images/botonDesconectarPulsado.png")));
 		btnNewButton.setIcon(new ImageIcon(PanelPrincipal.class.getResource("/images/botonDesconectar.png")));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBounds(37, 536, 189, 50);
 		add(btnNewButton);
-		
+
 		btnSalir = new JButton("");
 		btnSalir.setRolloverIcon(new ImageIcon(PanelPrincipal.class.getResource("/images/botonExitPulsado.png")));
 		btnSalir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -61,14 +62,14 @@ public class PanelPrincipal extends JPanel {
 		btnSalir.setBorder(null);
 		btnSalir.setBounds(599, 530, 56, 56);
 		add(btnSalir);
-		
+
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(PanelPrincipal.class.getResource("/images/fondo2.jpg")));
 		lblNewLabel.setBounds(0, 0, 700, 625);
 		add(lblNewLabel);
 	}
 
-	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador
+	public void setControlador(ControladorApp c) { // Deberemos presentarle todos los botones al controlador
 		btnNewButton.addActionListener(c);
 		btnSalir.addActionListener(c);
 	}
@@ -76,18 +77,17 @@ public class PanelPrincipal extends JPanel {
 	public JButton getBtnNewButton() {
 		return btnNewButton;
 	}
-	
+
 	public JButton getBtnSalir() {
 		return btnSalir;
 	}
 
 	public void confirmarSalida() {
-		int op = JOptionPane.showConfirmDialog(getParent(), "Esta seguro que desea salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
-		if(op == JOptionPane.YES_OPTION) {
+		int op = JOptionPane.showConfirmDialog(getParent(), "Esta seguro que desea salir?", "Confirmar",
+				JOptionPane.YES_NO_OPTION);
+		if (op == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
 	}
-	
+
 }
-
-
