@@ -129,4 +129,9 @@ public class PanelLogin extends JPanel {
 		
 	}
 	
+	public void borrarCampos() {
+		textFieldUsuario.setText("");
+		passwordField.setText("");
+	}
+	
 }

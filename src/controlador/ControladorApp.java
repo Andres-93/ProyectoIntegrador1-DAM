@@ -161,6 +161,7 @@ public class ControladorApp implements ActionListener {
 
 		} else if (e.getSource().equals(panel1.getBtnNewButton())) {
 			vistaP.setPanel(panel2);
+			panel2.borrarCampos();
 			vistaP.hacerMenuVisible(false);
 
 		} else if (e.getSource().equals(vistaP.getMntmAadirAl())) {
@@ -363,6 +364,9 @@ public class ControladorApp implements ActionListener {
 
 		} else if (e.getSource().equals(panel19.getBtnCancelar())) {
 			panel19.dispose();
+			
+		}else if(e.getSource().equals(panel1.getBtnSalir())) {
+			panel1.confirmarSalida();
 		}
 	}
 }
