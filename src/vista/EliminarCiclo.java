@@ -22,7 +22,7 @@ import javax.swing.JList;
 public class EliminarCiclo extends JPanel {
 	private JButton btnEliminarCiclo;
 	private JButton btnCancelar;
-	private JList listCi;
+	private JList<Ciclo> listCi;
 	public EliminarCiclo() {
 		inicializar();
 	}
@@ -70,7 +70,7 @@ public class EliminarCiclo extends JPanel {
 		scrollPane.setBounds(58, 320, 592, 204);
 		add(scrollPane);
 		
-		listCi = new JList();
+		listCi = new JList<Ciclo>();
 		scrollPane.setViewportView(listCi);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -104,7 +104,7 @@ public class EliminarCiclo extends JPanel {
 	
 	public Ciclo ciclossAEliminar() {
 		
-		Ciclo ci;
+		Ciclo ci = null;
 		
 		ci = (Ciclo) listCi.getSelectedValue();
 

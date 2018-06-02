@@ -219,6 +219,7 @@ public class ModificarProyectoJD extends JDialog {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setBounds(0,0,727,654);
 		setLocationRelativeTo(null);
+		setResizable(false);
 	}
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador

@@ -89,6 +89,7 @@ public class ModificarCicloJD extends JDialog {
 		label.setIcon(new ImageIcon(ModificarCicloJD.class.getResource("/images/FondoAlumnos700X700.png")));
 		label.setBounds(0, 0, 578, 607);
 		getContentPane().add(label);
+		setResizable(false);
 	}
 	
 	public void setControlador(ControladorApp c) {		//Deberemos presentarle todos los botones al controlador

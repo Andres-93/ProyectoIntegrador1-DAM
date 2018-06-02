@@ -64,7 +64,7 @@ public class VistaPrincipal extends JFrame{
 		}
 		
 		getContentPane().setLayout(null);	
-		setBounds(0,0,700,700);
+		setBounds(0,0,700,685);
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 700, 700);
 		getContentPane().add(scrollPane);

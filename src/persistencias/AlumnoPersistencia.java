@@ -124,7 +124,7 @@ public class AlumnoPersistencia {
             st.execute();
             JOptionPane.showConfirmDialog(null, "Usuario eliminado correctamente", "Mensaje de confirmación", JOptionPane.CLOSED_OPTION);
 	        } catch (SQLException ex) {
-	           JOptionPane.showMessageDialog(null, "Error");
+	           JOptionPane.showMessageDialog(null, "Error,este alumno esta vinculado a un proyecto porfavor elimine el proyecto o desvincule al alumno del mismo");
 	        }catch(ClassNotFoundException er) {
 	        	er.printStackTrace();
 	        }catch(Exception e) {        

@@ -156,7 +156,7 @@ public class ModificarCliclo extends JPanel {
 	
 	public Ciclo cicloSelecionado() {
 		
-		Ciclo ci;
+		Ciclo ci = null;
 		
 		ci = (Ciclo) listCiclos.getSelectedValue();
 

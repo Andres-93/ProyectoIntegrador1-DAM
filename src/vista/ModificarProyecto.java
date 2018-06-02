@@ -105,7 +105,7 @@ public class ModificarProyecto extends JPanel {
 	
 	public Proyecto obtenerSelecionado() {
 		
-		Proyecto pro;
+		Proyecto pro = null;
 		
 		pro = listPro.getSelectedValue();
 		

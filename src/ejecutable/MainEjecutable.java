@@ -27,10 +27,10 @@ import vista.añadirAlumnos;
 public class MainEjecutable {
 
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
+
 				VistaPrincipal prueba = new VistaPrincipal();
 				PanelPrincipal panel1 = new PanelPrincipal();
 				PanelLogin panel2 = new PanelLogin();
@@ -52,7 +52,7 @@ public class MainEjecutable {
 				ConsultaProyecto panel18 = new ConsultaProyecto();
 				DetalleProyecto panel19 = new DetalleProyecto();
 				ControladorApp control = new ControladorApp(prueba);
-								
+
 				control.setPanel1(panel1);
 				control.setPanel2(panel2);
 				control.setPanel3(panel3);
@@ -72,8 +72,8 @@ public class MainEjecutable {
 				control.setPanel17(panel17);
 				control.setPanel18(panel18);
 				control.setPanel19(panel19);
-				
-				panel2.setControlador(control);		//Todos los panelesd se le presentan al controlador
+
+				panel2.setControlador(control); // Todos los panelesd se le presentan al controlador
 				panel1.setControlador(control);
 				panel3.setControlador(control);
 				prueba.setControlador(control);
@@ -93,9 +93,10 @@ public class MainEjecutable {
 				panel17.setControlador(control);
 				panel18.setControlador(control);
 				panel19.setControlador(control);
-				
+
 				prueba.hacerVisible();
-				prueba.setPanel(panel2);			//Queremos que la aplicacion empiece con el panel del login como primera ventana
+				prueba.setPanel(panel2); // Queremos que la aplicacion empiece con el panel del login como primera
+											// ventana
 			}
 		});
 

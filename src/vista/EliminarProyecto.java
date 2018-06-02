@@ -107,7 +107,7 @@ public class EliminarProyecto extends JPanel {
 	
 	public Proyecto ProyectoAEliminar() {
 		
-		Proyecto pro;
+		Proyecto pro = null;
 		
 		pro = listPro.getSelectedValue();
 

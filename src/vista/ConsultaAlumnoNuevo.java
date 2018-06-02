@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JButton;
+import java.awt.Cursor;
 
 public class ConsultaAlumnoNuevo extends JPanel {
 	private JList listaAl;
@@ -52,6 +53,7 @@ public class ConsultaAlumnoNuevo extends JPanel {
 		scrollPane.setViewportView(listaAl);
 		
 		btnCancelar = new JButton("");
+		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCancelar.setRolloverIcon(new ImageIcon(ConsultaAlumnoNuevo.class.getResource("/images/PulsadoBotonCancelar.png")));
 		btnCancelar.setIcon(new ImageIcon(ConsultaAlumnoNuevo.class.getResource("/images/BotonCancelar.png")));
 		btnCancelar.setFocusPainted(false);

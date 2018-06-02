@@ -24,6 +24,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JButton;
+import java.awt.Cursor;
 
 public class AñadirProyecto extends JPanel {
 	private JTextField textNombre;
@@ -142,8 +143,15 @@ public class AñadirProyecto extends JPanel {
 		listAlumnos = new JList();
 		scrollPane.setViewportView(listAlumnos);
 		
-		btnAnadir = new JButton("New button");
-		btnAnadir.setBounds(333, 353, 177, 49);
+		btnAnadir = new JButton("");
+		btnAnadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAnadir.setRolloverIcon(new ImageIcon(AñadirProyecto.class.getResource("/images/a\u00F1adirPoryectoPulsado.png")));
+		btnAnadir.setIcon(new ImageIcon(AñadirProyecto.class.getResource("/images/a\u00F1adirProyecto.png")));
+		btnAnadir.setFocusPainted(false);
+		btnAnadir.setContentAreaFilled(false);
+		btnAnadir.setBorder(null);
+		btnAnadir.setBorderPainted(false);
+		btnAnadir.setBounds(344, 352, 193, 49);
 		add(btnAnadir);
 		
 		spinnerCurso = new JSpinner();

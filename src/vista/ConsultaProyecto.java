@@ -171,7 +171,9 @@ public class ConsultaProyecto extends JPanel {
 	
 	public Proyecto proyectoSeleccionado() {
 		
-		Proyecto pro = listProyectos.getSelectedValue();
+		Proyecto pro = null;
+		
+		 pro = listProyectos.getSelectedValue();
 		
 		return pro;
 	}
