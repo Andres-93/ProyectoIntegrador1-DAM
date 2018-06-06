@@ -11,9 +11,9 @@ public class AccesoDB {
 	private String url;
 	private String driver;
 
-	public AccesoDB(String driver, String url) {
-		this.url = url;
-		this.driver = driver;
+	public AccesoDB() {
+		this.url = "jdbc:sqlite:dbSQLite/Prueba.db";
+		this.driver = "org.sqlite.JDBC";
 	}
 
 	public Connection conectar() throws ClassNotFoundException, SQLException {

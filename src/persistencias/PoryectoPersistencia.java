@@ -15,18 +15,20 @@ import modelo.Proyecto;
 
 public class PoryectoPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
-
-	Connection con;
-
-	// c
+	private AccesoDB acceso;
+	
+	
+	public PoryectoPersistencia() {
+		this.acceso =new AccesoDB();
+	}
+	
 	public void añadirProyecto(Proyecto pro) {
 
 		PreparedStatement st = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 			st = con.prepareStatement(
 					"insert into proyectos (nombre,url,nota,año,curso,grupo,ciclo) values (?,?,?,?,?,?,?)");
@@ -73,7 +75,7 @@ public class PoryectoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -84,11 +86,11 @@ public class PoryectoPersistencia {
 	public int obtenerID(Proyecto pro) {
 
 		int id = 0;
-
+		Connection con = null;
 		PreparedStatement sm = null;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("select id_p from proyectos where nombre = ?");
@@ -109,7 +111,7 @@ public class PoryectoPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -125,9 +127,10 @@ public class PoryectoPersistencia {
 		Proyecto pro;
 		Statement st = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.createStatement();
@@ -154,7 +157,7 @@ public class PoryectoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -167,10 +170,10 @@ public class PoryectoPersistencia {
 	public void eliminarProyecto(Proyecto pro) {
 
 		PreparedStatement st = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			// Primero eliminaremos todas las referencias a este proyecto de la tabla
@@ -200,7 +203,7 @@ public class PoryectoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -216,10 +219,11 @@ public class PoryectoPersistencia {
 		ResultSet rs = null;
 		ResultSet rt = null;
 		PreparedStatement pt = null;
+		Connection con = null;
 		int id = 0;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			id = new PoryectoPersistencia().obtenerID(pro);
@@ -260,7 +264,7 @@ public class PoryectoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -273,10 +277,10 @@ public class PoryectoPersistencia {
 	public void modificarProyecto(Proyecto pro, int idProyecto, int idCiclo) {
 
 		PreparedStatement sm = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement(
@@ -305,7 +309,7 @@ public class PoryectoPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -317,9 +321,9 @@ public class PoryectoPersistencia {
 	public void vincularAlumno(Alumno al, int idProyecto) {
 
 		PreparedStatement ps = null;
-
+		Connection con = null;
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			ps = con.prepareStatement("insert into se_realizan (proyecto, alumno) values(?,?)");
 			ps.setInt(1, idProyecto);
 			ps.setInt(2, new AlumnoPersistencia().obtenerID(al));
@@ -337,7 +341,7 @@ public class PoryectoPersistencia {
 					ps.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -348,9 +352,9 @@ public class PoryectoPersistencia {
 	public void desvincularAlumno(Alumno al, int idProyecto) {
 
 		PreparedStatement ps = null;
-
+		Connection con = null;
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			ps = con.prepareStatement("delete from se_realizan where proyecto = ? and alumno = ?");
 			ps.setInt(1, idProyecto);
 			ps.setInt(2, new AlumnoPersistencia().obtenerID(al));
@@ -368,7 +372,7 @@ public class PoryectoPersistencia {
 					ps.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -382,9 +386,9 @@ public class PoryectoPersistencia {
 		Proyecto pro;
 		Statement st = null;
 		ResultSet rs = null;
-
+		Connection con = null;
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.createStatement();
@@ -411,7 +415,7 @@ public class PoryectoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

@@ -11,16 +11,20 @@ import modelo.Profesor;
 
 public class ProfesorPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
-
-	Connection con;
+	private AccesoDB acceso;
+	
+	
+	public ProfesorPersistencia() {
+		this.acceso =new AccesoDB();
+	}
 
 	public void añadirProfesor(Profesor profe) {
 
 		PreparedStatement st = null;
+		Connection con = null;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("insert into profesores (usuario, contraseña) values (?,?)");
@@ -39,7 +43,7 @@ public class ProfesorPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -53,10 +57,11 @@ public class ProfesorPersistencia {
 
 		PreparedStatement st = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("SELECT * FROM profesores where usuario = ? AND contraseña = ?");
@@ -86,7 +91,7 @@ public class ProfesorPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");

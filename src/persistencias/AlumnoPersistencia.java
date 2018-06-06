@@ -13,20 +13,23 @@ import modelo.Alumno;
 
 public class AlumnoPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
+	private AccesoDB acceso;
 
-	Connection con;
+	
+	public  AlumnoPersistencia() {
+		this.acceso = new AccesoDB();
+	}
 
 	/*
 	 * Metodo que recibe un objeto de tipo alumno y lo añade a la base de datos.
 	 */
 	public void añadirAlumno(Alumno alu) {
-
+		Connection con = null;
 		PreparedStatement st = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("insert into alumnos (nombre, numExpediente) values (?,?)");
@@ -48,7 +51,7 @@ public class AlumnoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -66,10 +69,11 @@ public class AlumnoPersistencia {
 		Alumno al;
 		Statement st = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.createStatement();
@@ -95,7 +99,7 @@ public class AlumnoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -112,10 +116,10 @@ public class AlumnoPersistencia {
 	public void eliminarAlumno(Alumno al) {
 
 		PreparedStatement st = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("Delete from alumnos where numExpediente =?");
@@ -137,7 +141,7 @@ public class AlumnoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -152,10 +156,11 @@ public class AlumnoPersistencia {
 	public void modificarAlumno(Alumno al, int id) {
 
 		PreparedStatement sm = null;
+		Connection con = null;
 
 		try {
-
-			con = conexion.conectar();
+			
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("update alumnos set nombre = ?,numExpediente = ? where ID_A = ?");
@@ -178,7 +183,7 @@ public class AlumnoPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -193,12 +198,12 @@ public class AlumnoPersistencia {
 	public int obtenerID(Alumno al) {
 
 		int id = 0;
-
+		Connection con = null;
 		PreparedStatement sm = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("select ID_A from alumnos where numExpediente = ?");
@@ -220,7 +225,7 @@ public class AlumnoPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -239,10 +244,11 @@ public class AlumnoPersistencia {
 		Alumno al;
 		Statement st = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.createStatement();
@@ -269,7 +275,7 @@ public class AlumnoPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");

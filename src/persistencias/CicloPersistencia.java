@@ -14,16 +14,20 @@ import modelo.Ciclo;
 
 public class CicloPersistencia {
 
-	AccesoDB conexion = new AccesoDB("org.sqlite.JDBC", "jdbc:sqlite:Prueba.db");
+	private AccesoDB acceso;
+	
+	
 
-	Connection con;
+	public CicloPersistencia() {
+		this.acceso =new AccesoDB();
+	}
 
 	public void añadirCiclo(Ciclo ci) {
-
+		Connection con = null;
 		PreparedStatement st = null;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("insert into ciclos (nombre, descripcion) values (?,?)");
@@ -46,7 +50,7 @@ public class CicloPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -61,10 +65,11 @@ public class CicloPersistencia {
 		Ciclo ci;
 		Statement st = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.createStatement();
@@ -91,7 +96,7 @@ public class CicloPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -103,10 +108,10 @@ public class CicloPersistencia {
 	public void eliminarCiclo(Ciclo ci) {
 
 		PreparedStatement st = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			st = con.prepareStatement("Delete from ciclos where nombre =?");
@@ -126,7 +131,7 @@ public class CicloPersistencia {
 					st.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -139,9 +144,10 @@ public class CicloPersistencia {
 		int id = 0;
 		PreparedStatement sm = null;
 		ResultSet rs = null;
+		Connection con = null;
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("select id_c from ciclos where nombre = ?");
@@ -165,7 +171,7 @@ public class CicloPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -178,10 +184,10 @@ public class CicloPersistencia {
 	public void modificarAlumno(Ciclo ci, int id) {
 
 		PreparedStatement sm = null;
-
+		Connection con = null;
 		try {
 
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("update ciclos set nombre = ?,descripcion = ? where id_c = ?");
@@ -203,7 +209,7 @@ public class CicloPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
@@ -219,11 +225,12 @@ public class CicloPersistencia {
 		PreparedStatement sm = null;
 		ResultSet rs = null;
 		Ciclo ci = null;
+		Connection con = null;
 		int id = 0;
 		String nombreCiclo = "";
 
 		try {
-			con = conexion.conectar();
+			con = acceso.conectar();
 			System.out.println("Conectado");
 
 			sm = con.prepareStatement("select ciclo from proyectos where nombre = ?");
@@ -264,7 +271,7 @@ public class CicloPersistencia {
 					sm.close();
 				}
 				if (con != null) {
-					conexion.desconectar(con);
+					acceso.desconectar(con);
 				}
 			} catch (SQLException e) {
 				System.out.println("No se pudo cerrar");
