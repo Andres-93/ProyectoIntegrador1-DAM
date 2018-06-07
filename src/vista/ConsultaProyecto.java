@@ -173,7 +173,7 @@ public class ConsultaProyecto extends JPanel {
 				consulta = "Select * from proyectos";
 			} else if (comboBoxFiltro.getSelectedIndex() == 5) {
 				consulta = "Select * from proyectos where ciclo ="
-						+ new CicloPersistencia().obtenerID(textFiltro.getText());
+						+ new CicloPersistencia().obtenerID(textFiltro.getText().toUpperCase());
 			}
 		} else {
 			JOptionPane.showConfirmDialog(null, "No debe dejar el espacion en blanco", "Error",
