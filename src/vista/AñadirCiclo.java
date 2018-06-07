@@ -105,7 +105,7 @@ public class AñadirCiclo extends JPanel {
 		Ciclo ci;
 
 		ci = new Ciclo(textNomCiclo.getText().toUpperCase(), textDescrpCiclo.getText());
-
+		//s
 		return ci;
 	}
 
